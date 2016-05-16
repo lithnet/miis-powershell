@@ -27,14 +27,14 @@ namespace Lithnet.Miiserver.Automation
         {
             if (this.CSObject.WillDeleteMVObjectOnDisconnect())
             {
-                if (noToAll && prompted)
+                if (this.noToAll && this.prompted)
                 {
                     return;
                 }
 
-                if (yesToAll || this.ShouldContinue("This action will result in the metaverse object being deleted. Continue", "Confirm disconnection", ref yesToAll, ref noToAll))
+                if (this.yesToAll || this.ShouldContinue("This action will result in the metaverse object being deleted. Continue", "Confirm disconnection", ref this.yesToAll, ref this.noToAll))
                 {
-                    prompted = true;
+                    this.prompted = true;
                     this.CSObject.Disconnect(this.Explicit.IsPresent);
                 }
             }

@@ -19,12 +19,12 @@ namespace Lithnet.Miiserver.Automation
         public new void Enqueue(T obj)
         {
             base.Enqueue(obj);
-            lock (syncObject)
+            lock (this.syncObject)
             {
-                while (base.Count > this.Size)
+                while (this.Count > this.Size)
                 {
                     T outObj;
-                    base.TryDequeue(out outObj);
+                    this.TryDequeue(out outObj);
                 }
             }
         }

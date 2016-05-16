@@ -31,7 +31,7 @@ namespace Lithnet.Miiserver.Automation
                 return;
             }
 
-            if (runProfile == null)
+            if (this.runProfile == null)
             {
                 this.runProfile = this.MAInstance.RunProfiles[s.RunProfileName];
                 this.stats = this.MAInstance.Statistics;
@@ -48,21 +48,24 @@ namespace Lithnet.Miiserver.Automation
 
             if (pending)
             {
-                description = string.Format("Waiting for {0} to finish {1}", this.MAInstance.Name, s.RunProfileName);
+                description = $"Waiting for {this.MAInstance.Name} to finish {s.RunProfileName}";
             }
             else
             {
                 description = this.MAInstance.Name;
             }
 
-            if (lastStepNumber == 0 || lastStepNumber != d.StepNumber)
+            if (this.lastStepNumber == 0 || this.lastStepNumber != d.StepNumber)
             {
-                lastStepNumber = d.StepNumber;
-                countHistory = new FixedSizedQueue<ProgressItem>(30);
+                this.lastStepNumber = d.StepNumber;
+                this.countHistory = new FixedSizedQueue<ProgressItem>(30);
             }
 
-            ProgressRecord r = new ProgressRecord(0, description, string.Format("Performing {2} step {0}/{1}: {3}", d.StepNumber, this.runProfile.RunSteps.Count, this.runProfile.Name, d.StepDefinition.StepTypeDescription));
-            r.RecordType = ProgressRecordType.Processing;
+            ProgressRecord r = new ProgressRecord(0, description, string.Format(
+                $"Performing {this.runProfile.Name} step {d.StepNumber}/{this.runProfile.RunSteps.Count}: {d.StepDefinition.StepTypeDescription}"))
+            {
+                RecordType = ProgressRecordType.Processing
+            };
 
             int processed;
             double total;
@@ -83,7 +86,7 @@ namespace Lithnet.Miiserver.Automation
 
                 this.GetCountDiff(processed, out changedCount, out timespan);
 
-                if (changedCount > 0)
+                if (changedCount > 0 && timespan.HasValue)
                 {
                     objpersec = changedCount / timespan.Value.TotalSeconds;
                 }
@@ -96,12 +99,12 @@ namespace Lithnet.Miiserver.Automation
 
                 if (objpersec > 0 && !double.IsInfinity(objpersec))
                 {
-                    r.StatusDescription += string.Format(" ({0:N2} obj/sec)", objpersec);
+                    r.StatusDescription += $" ({objpersec:N2} obj/sec)";
                 }
             }
             else
             {
-                r.StatusDescription += string.Format(" (waiting for MA to start)");
+                r.StatusDescription += " (waiting for MA to start)";
             }
 
             this.WriteProgress(r);
@@ -143,7 +146,6 @@ namespace Lithnet.Miiserver.Automation
                     break;
 
                 default:
-                case RunStepType.Unknown:
                     return false;
             }
 
@@ -161,9 +163,9 @@ namespace Lithnet.Miiserver.Automation
             }
             
             ProgressItem current = new ProgressItem(DateTime.Now, currentcount);
-            countHistory.Enqueue(current);
+            this.countHistory.Enqueue(current);
 
-            ProgressItem first = countHistory.First();
+            ProgressItem first = this.countHistory.First();
 
             timespan = current.DateTime.Subtract(first.DateTime);
             intervalCount = current.Count - first.Count;

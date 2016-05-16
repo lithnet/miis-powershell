@@ -46,7 +46,6 @@ namespace Lithnet.Miiserver.Automation
             else
             {
                 Task<string> t = this.MAInstance.ExecuteRunProfileAsync(this.RunProfileName, this.ResumeLastRun);
-                RunDetails d;
                 int currentExecutionNumber = -1;
 
                 do
@@ -56,7 +55,7 @@ namespace Lithnet.Miiserver.Automation
                         break;
                     }
 
-                    d = this.MAInstance.GetLastRun();
+                    RunDetails d = this.MAInstance.GetLastRun();
                     if (d != null)
                     {
                         currentExecutionNumber = d.RunNumber;
@@ -73,22 +72,24 @@ namespace Lithnet.Miiserver.Automation
                         this.UpdateProgress(false, currentExecutionNumber);
                     }
 
-                    System.Threading.Thread.Sleep(2000);
+                    Thread.Sleep(2000);
                 }
 
-                ProgressRecord r = new ProgressRecord(0, this.MAInstance.Name, string.Format("Finished: {0}", this.RunProfileName));
-                r.RecordType = ProgressRecordType.Completed;
-                r.PercentComplete = 100;
+                ProgressRecord r = new ProgressRecord(0, this.MAInstance.Name, $"Finished: {this.RunProfileName}")
+                {
+                    RecordType = ProgressRecordType.Completed,
+                    PercentComplete = 100
+                };
                 this.WriteProgress(r);
 
                 if (t.IsFaulted)
                 {
-                    throw t.Exception.InnerExceptions.First();
+                    throw t.Exception?.InnerExceptions.First() ?? new MAExecutionException();
                 }
 
                 if (t.Result != "success")
                 {
-                    this.WriteWarning(string.Format("Management agent returned {0}", t.Result));
+                    this.WriteWarning($"Management agent returned {t.Result}");
                 }
             }
         }
