@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+  <Product Id="*"
+           Name="Lithnet FIM/MIM Synchronization Service PowerShell Module"
+           Language="1033"
+           Version="1.0.5968"
+           Manufacturer="Lithnet"
+           UpgradeCode="4F84B139-DDA7-4234-A698-934450462DB3">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64" />
+    <Media Id="1" Cabinet="Cab1.cab" EmbedCab="yes" />
+    <MajorUpgrade Schedule="afterInstallInitialize"
+                DowngradeErrorMessage="A later version of [ProductName] is already installed" />
+
+    <PropertyRef Id="WIX_IS_NETFRAMEWORK_45_OR_LATER_INSTALLED"/>
+    <Condition Message="This application requires .NET Framework 4.5. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_45_OR_LATER_INSTALLED]]>
+    </Condition>
+
+    <Property Id="FIMINSTALLDIR" Secure="yes">
+      <RegistrySearch Id="FimInstallDirFromRegistry"
+                      Root="HKLM"
+                      Key="SYSTEM\CurrentControlSet\services\FIMSynchronizationService\Parameters"
+                      Name="Path"
+                      Type="directory" />
+    </Property>
+
+    <Property Id="SYNCVERSION" Secure="yes">
+      <DirectorySearch Id="MiiserverVersion" Path="[FIMINSTALLDIR]">
+        <DirectorySearch Id="binFolder" AssignToProperty="no" Path="bin">
+          <FileSearch Name="miiserver.exe" MinVersion="4.1.3441.0"/>
+        </DirectorySearch>
+      </DirectorySearch>
+    </Property>
+
+    <Condition Message="This application requires the Forefront Identity Manager 2010 R2 4.1.3441 or later to be installed">
+      <![CDATA[Installed OR SYNCVERSION]]>
+    </Condition>
+
+    <Feature Id="ProductFeature" Title="PowerShell Module" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="ProductHelp" />
+    </Feature>
+
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+    
+    <UI>
+      <UIRef Id="WixUI_Minimal" />
+    </UI>
+
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="System64Folder">
+        <Directory Id="PSROOT" Name="WindowsPowerShell">
+          <Directory Id="PSV1ROOT" Name ="v1.0">
+            <Directory Id ="PSMODULESROOT" Name="Modules">
+              <Directory Id="APPLICATIONFOLDER" Name="LithnetMiisAutomation">
+                <Directory Id="ENUSHELPFOLDER" Name="en-us"/>
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="APPLICATIONFOLDER" >
+      <ComponentGroupRef Id="Lithnet.Miiserver.Automation.Binaries"/>
+    </ComponentGroup>
+
+    <ComponentGroup Id="ProductHelp" Directory="ENUSHELPFOLDER">
+      <ComponentGroupRef Id="Lithnet.Miiserver.Automation.Help"/>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

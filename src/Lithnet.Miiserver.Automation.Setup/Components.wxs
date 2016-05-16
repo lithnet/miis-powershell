@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <DirectoryRef Id="APPLICATIONFOLDER">
+      <Component Id="cmp299369f788994930b0571ae9df064ea9" Guid="*" Win64="yes">
+        <File Id="fil4b4e3cdbc411497bb172984c5b98fc9b" KeyPath="yes" Source="$(var.Lithnet.Miiserver.Automation.TargetDir)\Lithnet.Miiserver.Automation.dll" />
+      </Component>
+      <Component Id="cmp77895d0a3d0c445b95e5826fa0cec5ce" Guid="*" Win64="yes">
+        <File Id="fil7ce00caf43ba4c32abde8b7fd3ec61b9" KeyPath="yes" Source="$(var.Lithnet.Miiserver.Automation.TargetDir)\Lithnet.Logging.dll" />
+      </Component>
+      <Component Id="cmp457b73464e9c4e24bf54f486c51b5f16" Guid="*" Win64="yes">
+        <File Id="fil891392aca3c24d82a7dff109ed62f21c" KeyPath="yes" Source="$(var.Lithnet.Miiserver.Automation.TargetDir)\Lithnet.Miiserver.Client.dll" />
+      </Component>
+      <Component Id="cmpe3591fc5c6bb40e2a8c8bd1c4ee9aa10" Guid="*" Win64="yes">
+        <File Id="fil0216630d4e9046708cdd4076d61e0ae7" KeyPath="yes" Source="$(var.Lithnet.Miiserver.Automation.TargetDir)\LithnetMiisAutomation.psm1" />
+      </Component>
+      <Component Id="cmpd4773acad00f467cb4af8945581416af" Guid="*" Win64="yes">
+        <File Id="fil52320e2b2969470aa55363dd67a5132e" KeyPath="yes" Source="$(var.Lithnet.Miiserver.Automation.TargetDir)\LithnetMiisAutomation.psd1" />
+      </Component>
+      <Component Id="cmp3413b4846e9347299068f6aac2f65a4d" Guid="*" Win64="yes">
+        <File Id="fil1d55997b2c9b4248b2defbd3002eb0d0" KeyPath="yes" Source="$(var.Lithnet.Miiserver.Automation.TargetDir)en-us\Lithnet.Miiserver.Automation.dll-help.xml" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="Lithnet.Miiserver.Automation.Binaries">
+      <ComponentRef Id="cmp299369f788994930b0571ae9df064ea9" />
+      <ComponentRef Id="cmp77895d0a3d0c445b95e5826fa0cec5ce" />
+      <ComponentRef Id="cmp457b73464e9c4e24bf54f486c51b5f16" />
+      <ComponentRef Id="cmpe3591fc5c6bb40e2a8c8bd1c4ee9aa10" />
+      <ComponentRef Id="cmpd4773acad00f467cb4af8945581416af" />
+    </ComponentGroup>
+
+    <ComponentGroup Id="Lithnet.Miiserver.Automation.Help">
+      <ComponentRef Id="cmp3413b4846e9347299068f6aac2f65a4d" />
+    </ComponentGroup>
+  </Fragment>
+</Wix>

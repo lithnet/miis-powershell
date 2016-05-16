@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C4D7EEA2-D3AD-417F-8001-3C93F4237AC9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lithnet.Miiserver.Automation</RootNamespace>
+    <AssemblyName>Lithnet.Miiserver.Automation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\Windows\Sysnative\WindowsPowerShell\v1.0\Modules\LithnetMIISAutomation\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Lithnet.Miiserver.Client, Version=1.0.5980.21339, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lithnet.Miiserver.Client.1.0.5980.21339\lib\net45\Lithnet.Miiserver.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\WindowsPowerShell\3.0\System.Management.Automation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Get-PendingImports.cs" />
+    <Compile Include="Get-SavedRunHistory.cs" />
+    <Compile Include="Save-RunHistory.cs" />
+    <Compile Include="DisconnectorState.cs" />
+    <Compile Include="FixedSizeQueueT.cs" />
+    <Compile Include="Get-Connectors.cs" />
+    <Compile Include="Get-MVConfiguration.cs" />
+    <Compile Include="Get-MVSchema.cs" />
+    <Compile Include="Get-MVObject.cs" />
+    <Compile Include="Get-PendingImportDeletes.cs" />
+    <Compile Include="Get-PendingImportUpdates.cs" />
+    <Compile Include="Get-PendingImportAdds.cs" />
+    <Compile Include="Get-PendingExports.cs" />
+    <Compile Include="Get-PendingExportRenames.cs" />
+    <Compile Include="Get-PendingExportDeletes.cs" />
+    <Compile Include="Get-PendingExportUpdates.cs" />
+    <Compile Include="Get-PendingExportAdds.cs" />
+    <Compile Include="Disconnect-CSObject.cs" />
+    <Compile Include="Get-LastRunDetails.cs" />
+    <Compile Include="Get-RunDetail.cs" />
+    <Compile Include="New-MVQuery.cs" />
+    <Compile Include="ProgressItem.cs" />
+    <Compile Include="Project-CSObject.cs" />
+    <Compile Include="MATargetCmdlet.cs" />
+    <Compile Include="Set-DisconnectorState.cs" />
+    <Compile Include="Get-Disconnectors.cs" />
+    <Compile Include="MAWaitingCmdlet.cs" />
+    <Compile Include="Join-CSObject.cs" />
+    <Compile Include="Wait-ManagementAgent.cs" />
+    <Compile Include="Sync-CSObject.cs" />
+    <Compile Include="Export-ManagementAgent.cs" />
+    <Compile Include="Export-MetaverseConfiguration.cs" />
+    <Compile Include="Get-RunSummary.cs" />
+    <Compile Include="Get-CSObject.cs" />
+    <Compile Include="Clear-RunHistory.cs" />
+    <Compile Include="Set-MVProvisioningRulesExtension.cs" />
+    <Compile Include="Get-RunProfiles.cs" />
+    <Compile Include="Get-RunProfileNames.cs" />
+    <Compile Include="Get-MAStatistics.cs" />
+    <Compile Include="Stop-ManagementAgent.cs" />
+    <Compile Include="Start-ManagementAgent.cs" />
+    <Compile Include="Get-ManagementAgent.cs" />
+    <Compile Include="MiisController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LithnetMiisAutomation.psm1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LithnetMIISAutomation.Help.pshproj" />
+    <None Include="LithnetMiisAutomation.psd1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="en-us\Lithnet.Miiserver.Automation.dll-help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

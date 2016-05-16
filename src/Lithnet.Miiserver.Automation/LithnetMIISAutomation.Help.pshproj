@@ -1,0 +1,2669 @@
+<?xml version="1.0"?>
+<ModuleObject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fVersion="1.1" type="Manifest" mclass="Module" useSupports="false">
+  <Name>LithnetMIISAutomation</Name>
+  <Version>1.0</Version>
+  <Description>Lithnet PowerShell Module for FIM Synchronization Service</Description>
+  <HasManifest>true</HasManifest>
+  <Provider>
+    <ProviderName>CodePlex</ProviderName>
+    <ProviderURL>https://www.codeplex.com/site/metaweblog</ProviderURL>
+    <Blog>
+      <blogid>lithnetmiisautomation</blogid>
+      <blogName>miisautomation</blogName>
+      <url>https://lithnetmiisautomation.codeplex.com/</url>
+    </Blog>
+    <UserName>ryannewington</UserName>
+    <Password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+nRfjshoE0WkN48Z5CdO/gAAAAACAAAAAAADZgAAwAAAABAAAAAtg87Y+pGSbuoikX/pqrzaAAAAAASAAACgAAAAEAAAAGsLErQgWnB2t8jIaUBvPVooAAAADTfb7M1PbKVs2OZLRn3lmdfX1OeA04Nw2A0Ww1AHOkF4LZrubzsAyhQAAADT8ZU8d8Smzu6Bv1zfU15toKEwfA==</Password>
+    <FetchPostCount>50</FetchPostCount>
+  </Provider>
+  <OverridePostCount>false</OverridePostCount>
+  <FetchPostCount xsi:nil="true" />
+  <Cmdlets>
+    <CmdletObject verb="Clear" noun="RunHistory">
+      <Name>Clear-RunHistory</Name>
+      <GeneralHelp>
+        <Synopsis>Clears the run history from the synchronization service</Synopsis>
+        <Description>The Clear-RunHistory cmdlet allows you to clear the Synchronization Service's run history. You can clear all runs, all runs older than a specified date, or all runs older than a specified number of days. The cmdlet also provides the ability to save the runs that are cleared to a file</Description>
+        <Notes>Saved run history files can be loaded using the Get-SavedRunHistory cmdlet</Notes>
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="ByDate" Params="BeforeDate File Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="ByDays" Params="DaysToKeep File Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Clear-RunHistory [[-BeforeDate] &lt;Nullable`1[DateTime]&gt;] [-File &lt;String&gt;]</string>
+        <string>Clear-RunHistory [[-DaysToKeep] &lt;Nullable`1[Int32]&gt;] [-File &lt;String&gt;]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Nullable`1[DateTime]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>FromDate</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Nullable`1[Int32]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>DaysToKeep</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies the number of days of run history to keep</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Nullable`1[DateTime]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>BeforeDate</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies the date of the latest run that will be deleted from the server. Runs after this specified date and time are preserved</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>File</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The name of the file to save the runs to before they are cleared</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Clear the entire run history</Name>
+          <Cmd>Clear-RunHistory</Cmd>
+          <Description>Using the Clear-RunHistory cmdlet with no parameters will clear the entire run history from the server</Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Clear runs older than specified number of days</Name>
+          <Cmd>Clear-RunHistory -DaysToKeep 2</Cmd>
+          <Description>Clears all items in the run history older than 2 days</Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Clears run history older than the specified date</Name>
+          <Cmd>Clear-RunHistory "2016-01-01"</Cmd>
+          <Description>Clears all runs older than January 1, 2016</Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Clear the run history, saving the runs to a file</Name>
+          <Cmd>Clear-RunHistory -DaysToKeep 5 -File "C:\Logs\RunHistory.xml"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <ExtraHeader />
+      <ExtraFooter />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Clear-RunHistory</URL>
+      <ArticleIDString>698475</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Disconnect" noun="CSObject">
+      <Name>Disconnect-CSObject</Name>
+      <GeneralHelp>
+        <Synopsis>Disconnects a connector space object from the metaverse</Synopsis>
+        <Description>The Disconnect-CSObject cmdlet allows you to disconnect a specified connector space object from the connector space. If disconnecting the connector space object will result in the metaverse object being deleted, the cmdlet will prompt for confirmation before proceeding.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="CSObject Explicit Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Disconnect-CSObject [-CSObject] &lt;CSObject&gt; [[-Explicit] &lt;SwitchParameter&gt;]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="CSObject" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>CSObject</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The connector space object to disconnect</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
+          <Name>Explicit</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies if the connector should be made an explicit disconnector. By default, a normal disconnector is made</Description>
+          <DefaultValue>false</DefaultValue>
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Disconnect a connector space object using the pipeline</Name>
+          <Cmd>Get-CSObject -RDN "CN=John Smith" -MA "ADMA" | Disconnect-CSObject</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Disconnect a connector space object</Name>
+          <Cmd>$cs = Get-CSObject -RDN "CN=John Smith" -MA "ADMA"
+Disconnect-CSObject -CSObject $cs</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Explicitly disconnect a connector space object</Name>
+          <Cmd>$cs = Get-CSObject -RDN "CN=John Smith" -MA "ADMA"
+Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Disconnect-CSObject</URL>
+      <ArticleIDString>698476</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Export" noun="ManagementAgent">
+      <Name>Export-ManagementAgent</Name>
+      <GeneralHelp>
+        <Synopsis>Exports a management agent to a file</Synopsis>
+        <Description>The Export-ManagementAgent cmdlet exports a management agent to an XML file</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="File MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Export-ManagementAgent [-File] &lt;String&gt; [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="true" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
+          <Name>File</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The name of the file to export to</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The name of the management agent to export</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Export management agent</Name>
+          <Cmd>Export-ManagementAgent -File "ma.xml" -MA "ADMA"</Cmd>
+          <Description>Exports the ADMA management agent to a file called 'ma.xml'</Description>
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Export-ManagementAgent</URL>
+      <ArticleIDString>698477</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Export" noun="MetaverseConfiguration">
+      <Name>Export-MetaverseConfiguration</Name>
+      <GeneralHelp>
+        <Synopsis>Exports the metaverse configuration to a file</Synopsis>
+        <Description>The Export-MetaverseConfiguration cmdlet exports the metaverse XML files to an empty folder. These files can then later be used to import the metaverse confirmation using the Synchronization Service client.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Path Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Export-MetaverseConfiguration [-Path] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>Path</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>An empty directory to export the configuration files to</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Export the metaverse configuration</Name>
+          <Cmd>Export-MetaverseConfiguration -Path "C:\temp\mv-backup"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Export-MetaverseConfiguration</URL>
+      <ArticleIDString>698478</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="CSObject">
+      <Name>Get-CSObject</Name>
+      <GeneralHelp>
+        <Synopsis>Gets one or more connector space objects</Synopsis>
+        <Description>The Get-CSObject cmdlet allows you to get one or more CSObjects using a connector space object ID, a DN, or an RDN</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="Guid" Params="ID MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="DN" Params="DN IncludeSubTree MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="RDN" Params="Rdn MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-CSObject [-ID] &lt;Guid&gt; [-MA] &lt;String&gt;</string>
+        <string>Get-CSObject [-DN] &lt;String&gt; [[-IncludeSubTree] &lt;SwitchParameter&gt;] [-MA] &lt;String&gt;</string>
+        <string>Get-CSObject [-Rdn] &lt;String&gt; [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Guid" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>ID</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The connector space object ID</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>DN</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The distinguished name of the connector space object</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>Rdn</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The relative distinguished name of the connector space object</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
+          <Name>IncludeSubTree</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies that all objects contained below the specified DN should be returned</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent containing the connector space object</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Get an object by its known ID</Name>
+          <Cmd>Get-CSObject -ID 82BFCE95-0DE6-4537-85B0-6DFD360313A1 -MA "ADMA"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Get an object by its DN</Name>
+          <Cmd>Get-CSObject -DN "CN=John Smith, OU=Sales, DC=contoso, DC=local" -MA "ADMA"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Get all objects in the sales OU</Name>
+          <Cmd>Get-CSObject -DN "OU=Sales, DC=contoso, DC=local" -IncludeSubTree -MA "ADMA"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Get an object by its RDN</Name>
+          <Cmd>Get-CSObject -RDN "CN=John Smith" -MA "ADMA"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <ExtraHeader />
+      <ExtraFooter />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-CSObject</URL>
+      <ArticleIDString>698479</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="Disconnectors">
+      <Name>Get-Disconnectors</Name>
+      <GeneralHelp>
+        <Synopsis>Gets the disconnectors from a specified agent</Synopsis>
+        <Description>The Get-Disconnectors cmdlet allows you to get explict, filtered, and normal disconnectors from a management agent</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Type MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-Disconnectors [[-Type] &lt;Nullable`1[ConnectorState]&gt;] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Nullable`1[ConnectorState]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
+          <Name>Type</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The type of disconnector to get</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the disconnectors from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Get all disconnectors from a management agent</Name>
+          <Cmd>Get-Disconnectors -MA "ADMA"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Get filtered disconnectors from a management agent</Name>
+          <Cmd>Get-Disconnectors -Type "Filtered" -MA "ADMA"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Get all explicit disconnectors from a management agent</Name>
+          <Cmd>Get-Disconnectors -Type "Explicit" -MA "ADMA"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Get normal disconnectors from a management agent</Name>
+          <Cmd>Get-Disconnectors -Type "Normal" -MA "ADMA"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-Disconnectors</URL>
+      <ArticleIDString>698480</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="LastRunDetails">
+      <Name>Get-LastRunDetails</Name>
+      <GeneralHelp>
+        <Synopsis>Gets the last run details from the specified management agent</Synopsis>
+        <Description>Gets the specified number of run history items from the management agent, starting with the most recent</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Count MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-LastRunDetails [[-Count] &lt;Int32&gt;] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Int32" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
+          <Name>Count</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The number of run history items to return (starting from the most recent). Leaving this value unspecified will return the last run history item</Description>
+          <DefaultValue>1</DefaultValue>
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the run history for</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Get the most recent run details</Name>
+          <Cmd>Get-LastRunDetails -MA "ADMA"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Get the last 5 runs</Name>
+          <Cmd>Get-LastRunDetails -Count 5 -MA ADMA</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-LastRunDetails</URL>
+      <ArticleIDString>698481</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="ManagementAgent">
+      <Name>Get-ManagementAgent</Name>
+      <GeneralHelp>
+        <Synopsis>Gets a management agent</Synopsis>
+        <Description>The Get-ManagementAgent cmdlet gets the configuration details of the specified management agent</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Name Reload Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-ManagementAgent [[-Name] &lt;String&gt;] [-Reload]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>Name</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The name of the management agent</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Reload</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Forces the cmdlet discard any internal cached copy of the management agent, and reload it from the sync service</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Get a management agent</Name>
+          <Cmd>Get-ManagementAgent ADMA</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-ManagementAgent</URL>
+      <ArticleIDString>698482</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="MVConfiguration">
+      <Name>Get-MVConfiguration</Name>
+      <GeneralHelp>
+        <Synopsis>Gets the metaverse configuration</Synopsis>
+        <Description>The Get-MVConfiguration cmdlet gets the configuration settings from the metaverse including the schema, object deletion rules, password synchronization configuration, and provisioning configuration</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-MVConfiguration</string>
+      </Syntax>
+      <Parameters />
+      <Examples>
+        <Example>
+          <Name>Get the metaverse configuratioin</Name>
+          <Cmd>Get-MVConfiguration</Cmd>
+          <Description />
+          <Output>Schema                            : Lithnet.Miiserver.Client.DsmlSchema
+Version                           : 436
+PasswordSyncEnabled               : True
+PasswordChangeHistorySize         : 24
+RulesExtension                    : FIM.MRE.dll
+RulesExtensionInSeperateProcess   : False
+RulesExtensionTimeout             : 60
+ProvisioningRulesExtensionEnabled : True
+ProvisioningSyncRulesEnabled      : False
+ImportFlowSets                    : {[group, group], [user, user], [contact, contact], [organizationalUnit, organizationalUnit]...}
+MVDeletionRules                   : {[calendar, Lithnet.Miiserver.Client.MVDeletionRule], [detectedRuleEntry,
+                                    Lithnet.Miiserver.Client.MVDeletionRule], [expectedRuleEntry, Lithnet.Miiserver.Client.MVDeletionRule],
+                                    [contact, Lithnet.Miiserver.Client.MVDeletionRule]...}</Output>
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-MVConfiguration</URL>
+      <ArticleIDString>698483</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="MVObject">
+      <Name>Get-MVObject</Name>
+      <GeneralHelp>
+        <Synopsis>Gets one or more objects from the metaverse</Synopsis>
+        <Description>The Get-MVObject cmdlet allows you to get one or more objects from the metaverse using either search criteria or a known metaverse object ID</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="SearchByKey" Params="ObjectType Attribute Value Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Guid" Params="ID Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="SearchByQuery" Params="ObjectType Queries Collation Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-MVObject [-ObjectType] &lt;String&gt; [-Attribute] &lt;String&gt; [-Value] &lt;Object&gt;</string>
+        <string>Get-MVObject [-ID] &lt;Guid&gt;</string>
+        <string>Get-MVObject [[-ObjectType] &lt;String&gt;] [[-Queries] &lt;MVAttributeQuery[]&gt;] [[-Collation] &lt;String&gt;]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>ObjectType</Name>
+          <Attributes>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The object type to query for</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
+          <Name>Attribute</Name>
+          <Attributes>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The name of the attribute to search with</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="3" globbing="false">
+          <Name>Value</Name>
+          <Attributes>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The value to search with</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Guid" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>ID</Name>
+          <Attributes>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The object ID of the metaverse object to retrieve</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="MVAttributeQuery[]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="2" globbing="false">
+          <Name>Queries</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>One or more queries to use for advanced searching. The query is constructed using AND conditions between the query items</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="3" globbing="false">
+          <Name>Collation</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The database collation to use in the search. By default, the value is 'SQL_Latin1_General_CP1_CI_AS'</Description>
+          <DefaultValue>SQL_Latin1_General_CP1_CI_AS</DefaultValue>
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Get a metaverse object by ID</Name>
+          <Cmd>Get-MVObject -ID "{9265F831-84AA-438A-AE3F-4C0901BA3EB6}"</Cmd>
+          <Description />
+          <Output>CSMVLinks          : {ADMA}
+Attributes         : {}
+PrimaryObjectClass : placeholder
+ObjectClasses      : {placeholder}
+DN                 : ea2a2a25-ad02-e611-8020-005056b50bb9
+DNAttributes       : {}
+ID                 : ea2a2a25-ad02-e611-8020-005056b50bb9</Output>
+        </Example>
+        <Example>
+          <Name>Get metaverse objects matching an account name</Name>
+          <Cmd>Get-MVObject -ObjectType user -Attribute accountName -Value jsmith</Cmd>
+          <Description>Searches the metaverse for an object of type 'user' with an accountName of 'jsmith'</Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Get all metaverse objects matching an attribute value</Name>
+          <Cmd>Get-MVObject -ObjectType user -Attribute accountType -Value custom</Cmd>
+          <Description>Gets all metaverse objects of the 'user' object type with an accountType attribute value of 'custom'</Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Gets metaverse objects with account names starting with 'test'</Name>
+          <Cmd>New-MVQuery -Attribute accountName -Operator StartsWith -Value "test" | Get-MVObject</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Get metaverse objects matching advanced criteria</Name>
+          <Cmd>New-MVQuery -Attribute accountName -Operator StartsWith -Value "test" | New-MVQuery -Attribute department -Operator IsPresent | Get-MVObject
+
+$queries = @();
+$queries += New-MVQuery -Attribute accountName -Operator StartsWith -Value "test" 
+$queries += New-MVQuery -Attribute department -Operator IsPresent 
+Get-MVObject -Queries $queries</Cmd>
+          <Description>Gets all metaverse objects that have accountNames starting with 'test' and have a department attribute present. The example shows two ways of performing the query, using the pipeline, as well as using an array.
+
+See the help on the New-MVQuery cmdlet for more information on search parameters</Description>
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-MVObject</URL>
+      <ArticleIDString>698484</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="MVSchema">
+      <Name>Get-MVSchema</Name>
+      <GeneralHelp>
+        <Synopsis>Gets the metaverse schema</Synopsis>
+        <Description>Gets a list of the object types and attributes that are defined in the metaverse</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="ObjectType Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-MVSchema [[-ObjectType] &lt;String&gt;]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>ObjectType</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Gets the schema for the specified metaverse object type only</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Get the metaverse schema</Name>
+          <Cmd>Get-MVSchema</Cmd>
+          <Description />
+          <Output>
+ObjectClasses                                                              Attributes
+-------------                                                              ----------
+{[placeholder, placeholder], [sharedMailbox, sharedMailbox], [calendar,... {[accountBlocked, accountBlocked], [accountDisabled, accountDisabled], ...</Output>
+        </Example>
+        <Example>
+          <Name>Gets the schema for a specific metaverse object type</Name>
+          <Cmd>Get-MVSchema -ObjectType user</Cmd>
+          <Description />
+          <Output>Name                                                                       Attributes
+----                                                                       ----------
+user                                                                       {[accountBlocked, accountBlocked], [accountDisabled, accountDisabled], ...</Output>
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-MVSchema</URL>
+      <ArticleIDString>698485</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="PendingExportAdds">
+      <Name>Get-PendingExportAdds</Name>
+      <GeneralHelp>
+        <Synopsis>Gets connector space objects that are pending export add operations</Synopsis>
+        <Description>Gets all objects in the connector space that are pending export add operations. These are objects that will be created in the connected system on the next export.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-PendingExportAdds [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Delta</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the changes being made to the object</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Hologram</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the representation of the object with the changes applied</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-PendingExportAdds</URL>
+      <ArticleIDString>698486</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="PendingExportDeletes">
+      <Name>Get-PendingExportDeletes</Name>
+      <GeneralHelp>
+        <Synopsis>Gets connector space objects that are pending export delete operations</Synopsis>
+        <Description>Gets all objects in the connector space that are pending export delete operations. These are objects that will be deleted in the connected system on the next export.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-PendingExportDeletes [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Delta</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the changes being made to the object</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Hologram</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the representation of the object with the changes applied</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-PendingExportDeletes</URL>
+      <ArticleIDString>698487</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="PendingExportRenames">
+      <Name>Get-PendingExportRenames</Name>
+      <GeneralHelp>
+        <Synopsis>Gets connector space objects that are pending export rename operations</Synopsis>
+        <Description>Gets all objects in the connector space that are pending export rename operations. These are objects that will be renamed in the connected system on the next export</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-PendingExportRenames [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Delta</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the changes being made to the object</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Hologram</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the representation of the object with the changes applied</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-PendingExportRenames</URL>
+      <ArticleIDString>698488</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="PendingExports">
+      <Name>Get-PendingExports</Name>
+      <GeneralHelp>
+        <Synopsis>Gets connector space objects that are pending export operations</Synopsis>
+        <Description>Gets all objects in the connector space that are pending export operations</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-PendingExports [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Delta</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the changes being made to the object</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Hologram</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the representation of the object with the changes applied</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-PendingExports</URL>
+      <ArticleIDString>698489</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="PendingExportUpdates">
+      <Name>Get-PendingExportUpdates</Name>
+      <GeneralHelp>
+        <Synopsis>Gets connector space objects that are pending export update operations</Synopsis>
+        <Description>Gets all objects in the connector space that are pending export update operations. These are objects that will be modified in the connected system on the next export.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-PendingExportUpdates [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Delta</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the changes being made to the object</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Hologram</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the representation of the object with the changes applied</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-PendingExportUpdates</URL>
+      <ArticleIDString>698490</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="PendingImportAdds">
+      <Name>Get-PendingImportAdds</Name>
+      <GeneralHelp>
+        <Synopsis>Gets connector space objects that are pending import add operations</Synopsis>
+        <Description>Gets all objects in the connector space that are pending import add operations. These are objects are newly seen in the connector space, and have not yet been synchronized.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-PendingImportAdds [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Delta</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the changes being made to the object</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Hologram</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the representation of the object with the changes applied</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-PendingImportAdds</URL>
+      <ArticleIDString>698491</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="PendingImportDeletes">
+      <Name>Get-PendingImportDeletes</Name>
+      <GeneralHelp>
+        <Synopsis>Gets connector space objects that are pending import delete operations</Synopsis>
+        <Description>Gets all objects in the connector space that are pending import delete operations. These are objects were seen as deleted in the last import, but have not yet been synchronized.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-PendingImportDeletes [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Delta</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the changes being made to the object</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Hologram</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the representation of the object with the changes applied</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-PendingImportDeletes</URL>
+      <ArticleIDString>698492</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="PendingImportUpdates">
+      <Name>Get-PendingImportUpdates</Name>
+      <GeneralHelp>
+        <Synopsis>Gets connector space objects that are pending import update operations</Synopsis>
+        <Description>Gets all objects in the connector space that are pending import update operations. These are objects were seen as modified in the last import, but have not yet been synchronized.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-PendingImportUpdates [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Delta</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the changes being made to the object</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Hologram</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the representation of the object with the changes applied</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-PendingImportUpdates</URL>
+      <ArticleIDString>698493</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="RunDetail">
+      <Name>Get-RunDetail</Name>
+      <GeneralHelp>
+        <Synopsis>Gets detailed information about a management agent run</Synopsis>
+        <Description>The Get-RunDetail cmdlet gets the details from a specific management agent run. The cmdlet can get the details based on the run number, or using a RunSummary object</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="FromRunNumber" Params="RunNumber MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="FromSummary" Params="Item MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-RunDetail [-RunNumber] &lt;Int32&gt; [-MA] &lt;String&gt;</string>
+        <string>Get-RunDetail [-Item] &lt;RunSummary&gt; [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="ManagementAgent" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Int32" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>RunNumber</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The number of the run to obtain the details of</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MAName</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="RunDetails" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>Item</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="RunSummary" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>Item</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The run summary item to get the detail for</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the run detail from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Get run details using a run number</Name>
+          <Cmd>$run = Get-RunDetail -RunNumber 44 -MA ACMA</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Get run details from a run summary item</Name>
+          <Cmd>$summaryItems = Get-RunSummary
+
+foreach($summaryItem in $summaryItems)
+{
+   Get-RunDetail $summaryItem
+}</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>false</Publish>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="RunSummary">
+      <Name>Get-RunSummary</Name>
+      <GeneralHelp>
+        <Synopsis>Gets a summary of runs for the specified management agent</Synopsis>
+        <Description>The Get-RunSummary cmdlet gets a collection of RunSummary items that describe basic information about the run on the management agent. For further details, pass the RunSummary object to the Get-RunDetail cmdlet to get the full details of the run.</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-RunSummary [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the run summary from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Gets the run summary from an MA</Name>
+          <Cmd>$summaryItems = Get-RunSummary -MA "ADMA"
+</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Get detailed run information from a summary item</Name>
+          <Cmd>$summaryItems = Get-RunSummary -MA "ACMA"
+
+foreach($summaryItem in $summaryItems)
+{
+   Get-RunDetail $summaryItem
+}</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>false</Publish>
+    </CmdletObject>
+    <CmdletObject verb="Join" noun="CSObject">
+      <Name>Join-CSObject</Name>
+      <GeneralHelp>
+        <Synopsis>Joins a connector space object to a metaverse object</Synopsis>
+        <Description>The Join-CSObject cmdlet allows you to join a connector space object to an existing metaverse object. </Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="Manual" Params="MVObjectType MVObjectID CSObject Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Pipeline" Params="MVObject CSObject Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Join-CSObject [-MVObjectType] &lt;String&gt; [-MVObjectID] &lt;Guid&gt; [-CSObject] &lt;CSObject&gt;</string>
+        <string>Join-CSObject [-MVObject] &lt;MVObject&gt; [-CSObject] &lt;CSObject&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MVObjectType</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The object type of the metaverse object specified by the MVObjectID parameter</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Guid" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
+          <Name>MVObjectID</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The ID of the metaverse object to join</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="CSObject" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="3" globbing="false">
+          <Name>CSObject</Name>
+          <Attributes>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The connector space object to join</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="MVObject" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MVObject</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The metaverse object to join</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Join a connector space object</Name>
+          <Cmd>$cs = Get-CSObject -RDN "cn=John Smith" -MA "ADMA"
+$mv = Get-MVObject -ObjectType user -Attribute accountName -Value jsmith
+Join-CSObject -CSObject $cs -MVObject $mv
+</Cmd>
+          <Description>This example gets a connector space object from the ADMA with a RDN of 'John Smith' and joins it to the metaverse object of type user, with the accountName of 'jsmith'</Description>
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Join-CSObject</URL>
+      <ArticleIDString>698494</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="New" noun="MVObject">
+      <Name>New-MVObject</Name>
+      <GeneralHelp>
+        <Synopsis>Project a connector space object</Synopsis>
+        <Description>The New-MVObject cmdlet (or its alias Project-CSObject) allows you to project a connector space object into the metaverse as a new metaverse object of the specified type</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MVObjectType CSObject Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>New-MVObject [-MVObjectType] &lt;String&gt; [-CSObject] &lt;CSObject&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MVObjectType</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The type of metaverse object to create</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="CSObject" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="2" globbing="false">
+          <Name>CSObject</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The connector space object to project</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Project a connector space object using the Project-CSObject alias</Name>
+          <Cmd>$cs = Get-CSObject -RDN "cn=John Smith" -MA "ADMA"
+Project-CSObject -CSObject $cs -MVObjectType 'user'</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Project a connector space object</Name>
+          <Cmd>$cs = Get-CSObject -RDN "cn=John Smith" -MA "ADMA"
+New-MVObject -CSObject $cs -MVObjectType 'user'</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=New-MVObject</URL>
+      <ArticleIDString>698495</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="New" noun="MVQuery">
+      <Name>New-MVQuery</Name>
+      <GeneralHelp>
+        <Synopsis>Defines a search criteria for use in a metaverse search</Synopsis>
+        <Description>The New-MVQuery cmdlet creates an object that stores the criteria to use in a metaverse search. This cmdlet is used in conjunction with the Get-MVObject cmdlet</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Attribute Operator Value PipelineObject Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>New-MVQuery [-Attribute] &lt;String&gt; [[-Operator] &lt;MVSearchFilterOperator&gt;] [[-Value] &lt;Object&gt;] [[-PipelineObject] &lt;MVAttributeQuery&gt;]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>Attribute</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The name of the attribute to query</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="MVSearchFilterOperator" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
+          <Name>Operator</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The operator to apply to the query</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="3" globbing="false">
+          <Name>Value</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The value of the attribute to search for</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="MVAttributeQuery" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="4" globbing="false">
+          <Name>PipelineObject</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Not used</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Passing an MVQuery using the pipeline</Name>
+          <Cmd>New-MVQuery -Attribute accountName -Operator StartsWith -Value "test" | Get-MVObject
+</Cmd>
+          <Description>This example gets any object in the metaverse that has an accountName attribute starting with 'test'</Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Passing multiple MVQuery objects using the pipeline</Name>
+          <Cmd>New-MVQuery -Attribute accountName -Operator StartsWith -Value "test" | New-MVQuery -Attribute department -Operator IsPresent | Get-MVObject</Cmd>
+          <Description>This example gets all objects that have a value in their department attribute, and have an accountName that starts with 'test' </Description>
+          <Output />
+        </Example>
+        <Example>
+          <Name>Passing an MVQuery objects as parameters</Name>
+          <Cmd>$queries = @();
+$queries += New-MVQuery -Attribute accountName -Operator StartsWith -Value "test" 
+$queries += New-MVQuery -Attribute department -Operator IsPresent 
+Get-MVObject -Queries $queries</Cmd>
+          <Description>This example also gets all objects that have a value in their department attribute, and have an accountName that starts with 'test' </Description>
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>false</Publish>
+    </CmdletObject>
+    <CmdletObject verb="Set" noun="DisconnectorState">
+      <Name>Set-DisconnectorState</Name>
+      <GeneralHelp>
+        <Synopsis>Sets the state of a disconnector</Synopsis>
+        <Description>The Set-DisonnectorState cmdlet allows you to change the state of a disconnector from explicit to normal and vice versa</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="CSObject Type Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Set-DisconnectorState [-CSObject] &lt;CSObject&gt; [-Type] &lt;DisconnectorState&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="CSObject" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>CSObject</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The disconnected connector space object to modify</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="DisconnectorState" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
+          <Name>Type</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The disconnector type to change to</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Change a disconnector to an explicit disconnector</Name>
+          <Cmd>$cs = Get-CSObject -RDN "CN=John Smith" -MA "ACMA"
+Set-DisconnectorState -CSObject $cs -Type Explicit</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Change an explicit disconnector to a normal disconnector</Name>
+          <Cmd>$cs = Get-CSObject -RDN "CN=John Smith" -MA "ACMA"
+Set-DisconnectorState -CSObject $cs -Type Normal</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Set-DisconnectorState</URL>
+      <ArticleIDString>698496</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Set" noun="MVProvisioningRulesExtension">
+      <Name>Set-MVProvisioningRulesExtension</Name>
+      <GeneralHelp>
+        <Synopsis>Turns the provisioning rules extension on or off</Synopsis>
+        <Description>The Set-MVProvisioningRulesExtension allows you to programmatically turn the metaverse provisioning rules extension on or off</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Enabled Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Set-MVProvisioningRulesExtension [-Enabled] &lt;Boolean&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Boolean" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>Enabled</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies if the provisioning rules extension should be enabled or disabled</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Turn the provisioning rules extension on</Name>
+          <Cmd>Set-MVProvisioningRulesExtension -Enabled $true</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Turn the provisioning rules extension off</Name>
+          <Cmd>Set-MVProvisioningRulesExtension -Enabled $false</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Set-MVProvisioningRulesExtension</URL>
+      <ArticleIDString>698497</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Start" noun="ManagementAgent">
+      <Name>Start-ManagementAgent</Name>
+      <GeneralHelp>
+        <Synopsis>Starts a management agent run profile</Synopsis>
+        <Description>The Start-Management agent cmdlet allows you to start a management run profile, either synchronously or asynchronously</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="RunProfileName Async ResumeLastRun NoProgress MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Start-ManagementAgent [-RunProfileName] &lt;String&gt; [[-Async] &lt;SwitchParameter&gt;] [[-ResumeLastRun] &lt;SwitchParameter&gt;] [[-NoProgress] &lt;SwitchParameter&gt;] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
+          <Name>RunProfileName</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The name of the run profile to execute</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="3" globbing="false">
+          <Name>Async</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Starts the specified run profile asynchronously. The cmdlet will return immediately and not wait for the run to finish</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="4" globbing="false">
+          <Name>ResumeLastRun</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies that the last run should be resumed</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="5" globbing="false">
+          <Name>NoProgress</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies that the progress bar should not be displayed</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to execute</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Starts a management agent</Name>
+          <Cmd>Start-ManagementAgent -MA ACMA -RunProfileName FI</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Starts a management agent asynchronously</Name>
+          <Cmd>Start-ManagementAgent -MA ACMA -RunProfileName FI -Async</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Starts a management agent, without displaying progress information</Name>
+          <Cmd>Start-ManagementAgent -MA ACMA -RunProfileName FI -NoProgress</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Start-ManagementAgent</URL>
+      <ArticleIDString>698498</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Stop" noun="ManagementAgent">
+      <Name>Stop-ManagementAgent</Name>
+      <GeneralHelp>
+        <Synopsis>Stops the execution of a management agent run profile</Synopsis>
+        <Description>The Stop-ManagementAgent cmdlet stops any run in progress on the specified management agent</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Async MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Stop-ManagementAgent [[-Async] &lt;SwitchParameter&gt;] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="3" globbing="false">
+          <Name>Async</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies that the cmdlet should not wait for the stop operation to complete before returning</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to stop</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Stop a management agent</Name>
+          <Cmd>Stop-ManagementAgent ACMA</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Stop-ManagementAgent</URL>
+      <ArticleIDString>698499</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Sync" noun="CSObject">
+      <Name>Sync-CSObject</Name>
+      <GeneralHelp>
+        <Synopsis>Performs a synchronization on a connector space object</Synopsis>
+        <Description>The Sync-CSObject cmdlet allows you to show a synchronization preview of the result of a full or delta synchronization, and optionally commit those changes to the metaverse</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="CSObject Commit Delta Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Sync-CSObject [-CSObject] &lt;CSObject&gt; [-Commit] [-Delta]</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="CSObject" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>CSObject</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The connector space object to synchronize</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Commit</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies that the preview should be committed to the metaverse after being generated</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Delta</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies that a delta synchronization should be performed. A full synchronization is performed unless this switch is specified</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Perform a synchronization preview</Name>
+          <Cmd>$cs = Get-CSObject -RDN "CN=John Smith" -MA "ADMA"
+Sync-CSObject $cs</Cmd>
+          <Description>The command show will perform a sync preview of the specified connector space object. The resulting preview information is returned and can then be inspected by further code.</Description>
+          <Output>CSOperation        : disconnected
+MVOperation        : disconnected
+CSObject           : 14
+MVObject           : cfa22df7-ae07-e611-b778-005056b50bb9
+ImportFlowRules    :
+MVChanges          : {CFA22DF7-AE07-E611-B778-005056B50BB9}
+JoinResult         :
+ProvisioningResult : Lithnet.Miiserver.Client.ProvisioningResult
+MVDeletionDetails  : dont-delete-wrong-ma
+AttributeRecalls   : Lithnet.Miiserver.Client.MVRecall
+FilterRules        : Lithnet.Miiserver.Client.FilterRules
+Exports            : {d1a22df7-ae07-e611-b778-005056b50bb9, d0a22df7-ae07-e611-b778-005056b50bb9}
+Error              :</Output>
+        </Example>
+        <Example>
+          <Name>Commit a synchronization preview</Name>
+          <Cmd>$cs = Get-CSObject -RDN "CN=John Smith" -MA "ADMA"
+Sync-CSObject $cs -Commit</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Commit a delta synchronization preview</Name>
+          <Cmd>$cs = Get-CSObject -RDN "CN=John Smith" -MA "ADMA"
+Sync-CSObject $cs -Commit -Delta</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Perform a delta synchronization preview</Name>
+          <Cmd>$cs = Get-CSObject -RDN "CN=John Smith" -MA "ADMA"
+Sync-CSObject $cs -Delta</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Sync-CSObject</URL>
+      <ArticleIDString>698500</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Wait" noun="ManagementAgent">
+      <Name>Wait-ManagementAgent</Name>
+      <GeneralHelp>
+        <Synopsis>Waits for a management agent run to complete</Synopsis>
+        <Description>The Wait-Management agent cmdlet displays progress of the current run, and exits once the run has finished. If no run is in progress on the specified MA, then the cmdlet returns immediately</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Wait-ManagementAgent [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to wait on</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Wait for a management agent to finish execution</Name>
+          <Cmd>Wait-ManagementAgent ADMA
+write-host "The management agent has now completed"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Wait-ManagementAgent</URL>
+      <ArticleIDString>698501</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="Connectors">
+      <Name>Get-Connectors</Name>
+      <GeneralHelp>
+        <Synopsis>Gets the connectors from a management agent</Synopsis>
+        <Description>The Get-Connectors cmdlet allows you to get explict and normal connectors from a management agent</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Type MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-Connectors [[-Type] &lt;Nullable`1[ConnectorState]&gt;] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Nullable`1[ConnectorState]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
+          <Name>Type</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The type of connectors to get</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the connectors from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Get all connectors from a connector space</Name>
+          <Cmd>Get-Connectors -MA "ADMA"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Get explicit connectors from a connector space</Name>
+          <Cmd>Get-Connectors -MA "ACMA" -Type "Explicit"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Get normal connectors from a connector space</Name>
+          <Cmd>Get-Connectors -MA "ACMA" -Type "Normal"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-Connectors</URL>
+      <ArticleIDString>698502</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="MAStatistics">
+      <Name>Get-MAStatistics</Name>
+      <GeneralHelp>
+        <Synopsis>Gets statistics from a management agent</Synopsis>
+        <Description>The Get-MAStatistics cmdlet gets information on the number of connectors and their various states in a connector space</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-MAStatistics [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to retrieve the statistics for</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Get management agent statistics</Name>
+          <Cmd>Get-MAStatistics ADMA</Cmd>
+          <Description />
+          <Output>Total                 : 1355
+TotalConnectors       : 1335
+TotalDisconnectors    : 19
+Placeholders          : 1
+NormalConnectors      : 1331
+ExplicitConnectors    : 4
+NormalDisconnectors   : 18
+ExplicitDisconnectors : 1
+FilteredDisconnectors : 0
+ImportAdds            : 18
+ImportUpdates         : 0
+ImportDeletes         : 0
+ImportUnchanged       : 1335
+PendingImportTotal    : 18
+ExportAdds            : 0
+ExportUpdates         : 3
+ExportDeletes         : 0
+PendingExportTotal    : 3</Output>
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-MAStatistics</URL>
+      <ArticleIDString>698503</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="RunProfileNames">
+      <Name>Get-RunProfileNames</Name>
+      <GeneralHelp>
+        <Synopsis>Gets a management agent's run profile names</Synopsis>
+        <Description>The Get-RunProfileNames returns a list of run profile names for the management agent. These names can be used in calls to the Start-ManagementAgent cmdlet</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-RunProfileNames [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the run profile names from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-RunProfileNames</URL>
+      <ArticleIDString>698504</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="RunProfiles">
+      <Name>Get-RunProfiles</Name>
+      <GeneralHelp>
+        <Synopsis>Gets a management agent's run profiles</Synopsis>
+        <Description>The Get-RunProfiles returns a list of run profile for the management agent</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-RunProfiles [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the run profiles from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Get the run profiles from the specified management agent</Name>
+          <Cmd>Get-RunProfiles ADMA</Cmd>
+          <Description />
+          <Output>ID                   : 135bd4d5-ccb2-4b2a-850c-538be9b648af
+Name                 : DI
+CreationTime         : 4/03/2016 5:51:33 PM
+LastModificationTime : 15/04/2016 1:00:07 PM
+Version              : 3
+RunSteps             : {Delta import}
+
+ID                   : c4f13355-4c78-4a8b-8148-3b4918fcf7d0
+Name                 : DIDS
+CreationTime         : 4/03/2016 5:51:33 PM
+LastModificationTime : 15/04/2016 1:00:07 PM
+Version              : 3
+RunSteps             : {Delta import, Delta synchronization}
+
+ID                   : cd8a30fc-2aa2-456b-848e-9b3e2c6c6fc1
+Name                 : DIDSC
+CreationTime         : 17/04/2016 8:46:02 AM
+LastModificationTime : 17/04/2016 8:46:02 AM
+Version              : 1
+RunSteps             : {Delta import and delta synchronization}
+
+ID                   : 9ae6ce0e-8226-42b9-9518-c67917049237
+Name                 : DIFS
+CreationTime         : 4/03/2016 5:51:33 PM
+LastModificationTime : 15/04/2016 1:00:07 PM
+Version              : 3
+RunSteps             : {Delta import, Full synchronization}
+
+ID                   : 7b78f9c6-f161-446b-be42-7e721c309c71
+Name                 : DS
+CreationTime         : 4/03/2016 5:51:33 PM
+LastModificationTime : 15/04/2016 1:00:07 PM
+Version              : 3
+RunSteps             : {Delta synchronization}
+
+ID                   : a5e799f3-37e7-4598-823e-fb78bd8f5314
+Name                 : E1
+CreationTime         : 4/03/2016 5:51:33 PM
+LastModificationTime : 15/04/2016 1:00:07 PM
+Version              : 3
+RunSteps             : {Export}</Output>
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>true</Publish>
+      <URL>https://lithnetmiisautomation.codeplex.com/wikipage?title=Get-RunProfiles</URL>
+      <ArticleIDString>698505</ArticleIDString>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="SavedRunHistory">
+      <Name>Get-SavedRunHistory</Name>
+      <GeneralHelp>
+        <Synopsis>Gets a collection of run history items that were saved to a file</Synopsis>
+        <Description>The Get-SavedRunHistory cmdlet allows you to load a file containing saved run history items, created using this PowerShell module, or from the sync service itself, and load them back as RunDetail objects to allow easy searching and reporting</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="File Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-SavedRunHistory [-File] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>Path</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>File</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The name of the file to load</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Load run history from a file</Name>
+          <Cmd>$items = Get-SavedRunHistory -File D:\Logs\sync-run-history-export.xml
+
+foreach($item in $items)
+{
+   write-object $item.LastStepStatus
+}</Cmd>
+          <Description>This example loads the run history from a file, then outputs the status for each run</Description>
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>false</Publish>
+    </CmdletObject>
+    <CmdletObject verb="Save" noun="RunHistory">
+      <Name>Save-RunHistory</Name>
+      <GeneralHelp>
+        <Synopsis>Saves the run history from the synchronization service</Synopsis>
+        <Description>The Save-RunHistory cmdlet allows you to save the run history in the sync engine to a file. To clear the run history, and optionally save the runs, use the Clear-RunHistory cmdlet</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="ByDate" Params="BeforeDate File Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Save-RunHistory [[-BeforeDate] &lt;Nullable`1[DateTime]&gt;] -File &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="Nullable`1[DateTime]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>BeforeDate</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to save all runs before this date</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>File</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The name of the file to save the runs to</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples>
+        <Example>
+          <Name>Save all runs older than one day</Name>
+          <Cmd>Save-RunHistory -BeforeDate [DateTime]::Now.AddDays(-1) -File "D:\logs\yesterdays-runs.xml"</Cmd>
+          <Description />
+          <Output />
+        </Example>
+      </Examples>
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>false</Publish>
+    </CmdletObject>
+    <CmdletObject verb="Get" noun="PendingImports">
+      <Name>Get-PendingImports</Name>
+      <GeneralHelp>
+        <Synopsis>Gets connector space objects that are pending import operations</Synopsis>
+        <Description>Gets all objects in the connector space that are pending import operations</Description>
+        <Notes />
+        <InputType />
+        <InputUrl />
+        <InputTypeDescription />
+        <ReturnType />
+        <ReturnUrl />
+        <ReturnTypeDescription />
+      </GeneralHelp>
+      <ParamSets>
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+      </ParamSets>
+      <Syntax>
+        <string>Get-PendingImports [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+      </Syntax>
+      <Parameters>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Delta</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the changes being made to the object</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>Hologram</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>Specifies to get only the representation of the object with the changes applied</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
+      <Examples />
+      <RelatedLinks />
+      <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
+      <Publish>false</Publish>
+    </CmdletObject>
+  </Cmdlets>
+</ModuleObject>
