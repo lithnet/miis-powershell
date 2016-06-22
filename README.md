@@ -1,4 +1,5 @@
-# Lithnet FIM/MIM Synchronization Service PowerShell Module
+![](https://github.com/lithnet/miis-powershell/wiki/images/logo-ex-small.png)
+# FIM/MIM Synchronization Service PowerShell Module
 (aka MIIS PowerShell)
 
 The Lithnet FIM/MIM Synchronization Service PowerShell Module provides tools that allow interactions with the FIM/MIM Synchronization engine that goes beyond what is exposed via the supported WMI provider.
@@ -6,7 +7,7 @@ The Lithnet FIM/MIM Synchronization Service PowerShell Module provides tools tha
 Before proceeeding, read the following disclaimer
 
 ***
-> WARNING: USE THIS TOOL AT YOUR OWN RISK
+> USE THIS TOOL AT YOUR OWN RISK
 
 > This tool is provided for testing and diagnostic purposes and is intended for use in development and test environments. Any problems that arise from the use of the tool are not supported by the developers or by Microsoft.
 
