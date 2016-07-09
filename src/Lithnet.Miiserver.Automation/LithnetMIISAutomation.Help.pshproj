@@ -2680,10 +2680,12 @@ foreach($item in $items)
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="MAName" Params="MAName Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="MAObject" Params="MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Clear-FullSyncWarning [-MA] &lt;String&gt;</string>
+        <string>Clear-FullSyncWarning [[-MAName] &lt;String&gt;]</string>
+        <string>Clear-FullSyncWarning [[-MA] &lt;ManagementAgent&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -2696,11 +2698,37 @@ foreach($item in $items)
           <Description>The name of the management agent</Description>
           <DefaultValue />
         </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MAName</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>The name of the management agent</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ManagementAgent" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
+          <Name>MA</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description>A management agent object, obtained from a call to Get-ManagementAgent</Description>
+          <DefaultValue />
+        </ParameterDescription>
       </Parameters>
       <Examples>
         <Example>
           <Name>Suppress the warning on a management agent</Name>
-          <Cmd>Clear-FullSyncWarning -MA ADMA</Cmd>
+          <Cmd>Clear-FullSyncWarning -MAName ADMA</Cmd>
+          <Description />
+          <Output />
+        </Example>
+        <Example>
+          <Name>Supress the warning on all management agents</Name>
+          <Cmd>Clear-FullSyncWarning</Cmd>
           <Description />
           <Output />
         </Example>
