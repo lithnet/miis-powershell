@@ -4,7 +4,7 @@
   <Product Id="*"
            Name="Lithnet FIM/MIM Synchronization Service PowerShell Module"
            Language="1033"
-           Version="1.0.6053"
+           Version="1.0.6059"
            Manufacturer="Lithnet"
            UpgradeCode="4F84B139-DDA7-4234-A698-934450462DB3">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64" />

@@ -35,8 +35,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Lithnet.Miiserver.Client, Version=1.0.6053.15610, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lithnet.Miiserver.Client.1.0.6053.15610\lib\net45\Lithnet.Miiserver.Client.dll</HintPath>
+    <Reference Include="Lithnet.Miiserver.Client, Version=1.0.6059.17812, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lithnet.Miiserver.Client.1.0.6059.17812\lib\net45\Lithnet.Miiserver.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
