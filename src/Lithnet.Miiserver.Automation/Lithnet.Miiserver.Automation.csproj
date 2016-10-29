@@ -35,8 +35,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Lithnet.Miiserver.Client, Version=1.0.6065.37042, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lithnet.Miiserver.Client.1.0.6065.37042\lib\net45\Lithnet.Miiserver.Client.dll</HintPath>
+    <Reference Include="Lithnet.Miiserver.Client, Version=1.0.6146.20442, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lithnet.Miiserver.Client.1.0.6146.20442\lib\net45\Lithnet.Miiserver.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -115,6 +115,9 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe" sign /sha1 5ce168989b1359309dddee460c10e96fa60fa78b /t http://time.certum.pl /v $(TargetFileName)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
