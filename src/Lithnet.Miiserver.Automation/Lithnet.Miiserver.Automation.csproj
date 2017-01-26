@@ -99,6 +99,29 @@
     <Compile Include="MiisController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <UsingTask TaskName="ReplaceFileText" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <InputFilename ParameterType="System.String" Required="true" />
+      <OutputFilename ParameterType="System.String" Required="true" />
+      <MatchExpression ParameterType="System.String" Required="true" />
+      <ReplacementText ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Reference Include="System.Core" />
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Text.RegularExpressions" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            File.WriteAllText(
+                OutputFilename,
+                Regex.Replace(File.ReadAllText(InputFilename), MatchExpression, ReplacementText)
+                );
+          ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+  
   <ItemGroup>
     <None Include="LithnetMiisAutomation.psm1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -118,6 +141,37 @@
   <PropertyGroup>
     <PostBuildEvent>"C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe" sign /sha1 5ce168989b1359309dddee460c10e96fa60fa78b /t http://time.certum.pl /v $(TargetFileName)</PostBuildEvent>
   </PropertyGroup>
+
+  <Target Name="PostBuildMacros">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="Targets" />
+    </GetAssemblyIdentity>
+    <ItemGroup>
+      <VersionNumber Include="@(Targets->'%(Version)')"/>
+    </ItemGroup>
+  </Target>
+  
+  <PropertyGroup>
+    <PostBuildEventDependsOn>
+      $(PostBuildEventDependsOn);
+      PostBuildMacros;
+    </PostBuildEventDependsOn>
+    <PostBuildEvent>echo Assembly Version: @(VersionNumber)</PostBuildEvent>
+  </PropertyGroup>
+
+  <Target Name="AfterBuild">
+    <ReplaceFileText
+      InputFilename="$(TargetDir)LithnetMiisAutomation.psd1"
+      OutputFilename="$(TargetDir)LithnetMiisAutomation.psd1"
+      MatchExpression="\$version\$"
+      ReplacementText="@(VersionNumber)" />
+    <ReplaceFileText
+      InputFilename="$(ProjectDir)LithnetMIISAutomation.Help.pshproj"
+      OutputFilename="$(ProjectDir)LithnetMIISAutomation.Help.pshproj"
+      MatchExpression="&lt;Version&gt;.*?&lt;\/Version&gt;"
+      ReplacementText="&lt;Version&gt;@(VersionNumber)&lt;/Version&gt;" />
+  </Target>
+
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
