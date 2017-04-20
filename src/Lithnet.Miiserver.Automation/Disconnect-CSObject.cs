@@ -9,13 +9,16 @@ using System.IO;
 namespace Lithnet.Miiserver.Automation
 {
     [Cmdlet(VerbsCommunications.Disconnect, "CSObject")]
-    public class DisconnectCSObject : Cmdlet
+    public class DisconnectCSObject : PSCmdlet
     {
         [Parameter(Mandatory = true, Position = 1, ValueFromPipeline =true), ValidateNotNullOrEmpty]
         public CSObject CSObject { get; set; }
 
         [Parameter(Mandatory = false, Position = 2)]
         public SwitchParameter Explicit {get;set;}
+
+        [Parameter(Mandatory = false, Position = 3)]
+        public SwitchParameter Force { get; set; }
 
         private bool yesToAll;
 
@@ -32,7 +35,7 @@ namespace Lithnet.Miiserver.Automation
                     return;
                 }
 
-                if (this.yesToAll || this.ShouldContinue("This action will result in the metaverse object being deleted. Continue", "Confirm disconnection", ref this.yesToAll, ref this.noToAll))
+                if (this.Force || this.yesToAll || this.ShouldContinue("This action will result in the metaverse object being deleted. Continue", "Confirm disconnection", ref this.yesToAll, ref this.noToAll))
                 {
                     this.prompted = true;
                     this.CSObject.Disconnect(this.Explicit.IsPresent);
