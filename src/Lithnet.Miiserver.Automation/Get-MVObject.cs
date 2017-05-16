@@ -7,7 +7,7 @@ using Lithnet.Miiserver.Client;
 
 namespace Lithnet.Miiserver.Automation
 {
-    [Cmdlet(VerbsCommon.Get, "MVObject", DefaultParameterSetName = "SearchByKey")]
+    [Cmdlet(VerbsCommon.Get, "MVObject", DefaultParameterSetName = "SearchByObjectType")]
     public class GetMVObject : PSCmdlet
     {
         [ValidateNotNullOrEmpty]
@@ -15,6 +15,7 @@ namespace Lithnet.Miiserver.Automation
         public Guid ID { get; set; }
 
         [ValidateNotNullOrEmpty]
+        [Parameter(ValueFromPipeline = false, ParameterSetName = "SearchByObjectType", Mandatory = true, Position = 1)]
         [Parameter(ValueFromPipeline = false, ParameterSetName = "SearchByQuery", Mandatory = false, Position = 1)]
         [Parameter(ValueFromPipeline = false, ParameterSetName = "SearchByKey", Mandatory = true, Position = 1)]
         public string ObjectType { get; set; }
@@ -45,6 +46,10 @@ namespace Lithnet.Miiserver.Automation
             {
                 this.GetByPipeLineQuery();
             }
+            else if (this.ParameterSetName == "SearchByObjectType")
+            {
+                this.GetByObjectType();
+            }
         }
 
         protected override void ProcessRecord()
@@ -52,6 +57,10 @@ namespace Lithnet.Miiserver.Automation
             if (this.ParameterSetName == "Guid")
             {
                 this.GetByGuid();
+            }
+            else if (this.ParameterSetName == "SearchByObjectType")
+            {
+                this.GetByObjectType();
             }
             else if (this.ParameterSetName == "SearchByQuery")
             {
@@ -98,6 +107,14 @@ namespace Lithnet.Miiserver.Automation
             MVQuery q = new MVQuery();
             q.ObjectType = this.GetObjectType();
             q.QueryItems.Add(a);
+
+            this.WriteObject(SyncServer.GetMVObjects(q), true);
+        }
+
+        private void GetByObjectType()
+        {
+            MVQuery q = new MVQuery();
+            q.ObjectType = this.GetObjectType();
 
             this.WriteObject(SyncServer.GetMVObjects(q), true);
         }

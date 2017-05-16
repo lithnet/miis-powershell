@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ModuleObject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fVersion="1.1" type="Manifest" mclass="Module" useSupports="false">
   <Name>LithnetMIISAutomation</Name>
-  <Version>1.0.6320.366</Version>
+  <Version>1.0.6345.22461</Version>
   <Description>Lithnet PowerShell Module for FIM Synchronization Service</Description>
   <HasManifest>true</HasManifest>
   <Provider>
@@ -33,12 +33,12 @@
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="ByDate" Params="BeforeDate File Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="ByDays" Params="DaysToKeep File Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="ByDate" Params="BeforeDate File Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="ByDays" Params="DaysToKeep File Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Clear-RunHistory [[-BeforeDate] &lt;Nullable`1[DateTime]&gt;] [-File &lt;String&gt;]</string>
-        <string>Clear-RunHistory [[-DaysToKeep] &lt;Nullable`1[Int32]&gt;] [-File &lt;String&gt;]</string>
+        <string>Clear-RunHistory [[-BeforeDate] &lt;Nullable`1[DateTime]&gt;] [-File &lt;String&gt;] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
+        <string>Clear-RunHistory [[-DaysToKeep] &lt;Nullable`1[Int32]&gt;] [-File &lt;String&gt;] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Nullable`1[DateTime]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -75,6 +75,31 @@
           </Attributes>
           <Aliases />
           <Description>The name of the file to save the runs to before they are cleared</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -126,10 +151,10 @@
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="CSObject Explicit Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="CSObject Explicit Force Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Disconnect-CSObject [-CSObject] &lt;CSObject&gt; [[-Explicit] &lt;SwitchParameter&gt;]</string>
+        <string>Disconnect-CSObject [-CSObject] &lt;CSObject&gt; [[-Explicit] &lt;SwitchParameter&gt;] [[-Force] &lt;SwitchParameter&gt;] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="CSObject" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -150,6 +175,40 @@
           <Aliases />
           <Description>Specifies if the connector should be made an explicit disconnector. By default, a normal disconnector is made</Description>
           <DefaultValue>false</DefaultValue>
+        </ParameterDescription>
+        <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="3" globbing="false">
+          <Name>Force</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+          </Attributes>
+          <Aliases />
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
         </ParameterDescription>
       </Parameters>
       <Examples>
@@ -194,10 +253,10 @@ Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="File MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="File MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Export-ManagementAgent [-File] &lt;String&gt; [-MA] &lt;String&gt;</string>
+        <string>Export-ManagementAgent [-File] &lt;String&gt; [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="true" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
@@ -230,6 +289,31 @@ Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
           <Description>The name of the management agent to export</Description>
           <DefaultValue />
         </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
       </Parameters>
       <Examples>
         <Example>
@@ -259,10 +343,10 @@ Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Path Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Path Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Export-MetaverseConfiguration [-Path] &lt;String&gt;</string>
+        <string>Export-MetaverseConfiguration [-Path] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -273,6 +357,31 @@ Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
           </Attributes>
           <Aliases />
           <Description>An empty directory to export the configuration files to</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -304,14 +413,14 @@ Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="Guid" Params="ID MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="DN" Params="DN IncludeSubTree MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="RDN" Params="Rdn MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Guid" Params="ID MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="DN" Params="DN IncludeSubTree MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="RDN" Params="Rdn MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-CSObject [-ID] &lt;Guid&gt; [-MA] &lt;String&gt;</string>
-        <string>Get-CSObject [-DN] &lt;String&gt; [[-IncludeSubTree] &lt;SwitchParameter&gt;] [-MA] &lt;String&gt;</string>
-        <string>Get-CSObject [-Rdn] &lt;String&gt; [-MA] &lt;String&gt;</string>
+        <string>Get-CSObject [-ID] &lt;Guid&gt; [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
+        <string>Get-CSObject [-DN] &lt;String&gt; [[-IncludeSubTree] &lt;SwitchParameter&gt;] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
+        <string>Get-CSObject [-Rdn] &lt;String&gt; [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Guid" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -370,6 +479,31 @@ Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
           <Description>The management agent containing the connector space object</Description>
           <DefaultValue />
         </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
       </Parameters>
       <Examples>
         <Example>
@@ -419,10 +553,10 @@ Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Type MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Type MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-Disconnectors [[-Type] &lt;Nullable`1[ConnectorState]&gt;] [-MA] &lt;String&gt;</string>
+        <string>Get-Disconnectors [[-Type] &lt;Nullable`1[ConnectorState]&gt;] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Nullable`1[ConnectorState]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
@@ -452,6 +586,31 @@ Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
           </Attributes>
           <Aliases />
           <Description>The management agent to get the disconnectors from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -501,10 +660,10 @@ Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Count MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Count MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-LastRunDetails [[-Count] &lt;Int32&gt;] [-MA] &lt;String&gt;</string>
+        <string>Get-LastRunDetails [[-Count] &lt;Int32&gt;] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Int32" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
@@ -534,6 +693,31 @@ Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
           </Attributes>
           <Aliases />
           <Description>The management agent to get the run history for</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -571,10 +755,10 @@ Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Name Reload Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Name Reload Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-ManagementAgent [[-Name] &lt;String&gt;] [-Reload]</string>
+        <string>Get-ManagementAgent [[-Name] &lt;String&gt;] [-Reload] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -593,6 +777,31 @@ Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
           </Attributes>
           <Aliases />
           <Description>Forces the cmdlet discard any internal cached copy of the management agent, and reload it from the sync service</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -624,12 +833,38 @@ Disconnect-CSObject -CSObject $cs -Explicit</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-MVConfiguration</string>
+        <string>Get-MVConfiguration [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
-      <Parameters />
+      <Parameters>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+      </Parameters>
       <Examples>
         <Example>
           <Name>Get the metaverse configuratioin</Name>
@@ -670,20 +905,23 @@ MVDeletionRules                   : {[calendar, Lithnet.Miiserver.Client.MVDelet
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="SearchByKey" Params="ObjectType Attribute Value Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="Guid" Params="ID Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="SearchByQuery" Params="ObjectType Queries Collation Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="SearchByObjectType" Params="ObjectType Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Guid" Params="ID Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="SearchByQuery" Params="ObjectType Queries Collation Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="SearchByKey" Params="ObjectType Attribute Value Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-MVObject [-ObjectType] &lt;String&gt; [-Attribute] &lt;String&gt; [-Value] &lt;Object&gt;</string>
-        <string>Get-MVObject [-ID] &lt;Guid&gt;</string>
-        <string>Get-MVObject [[-ObjectType] &lt;String&gt;] [[-Queries] &lt;MVAttributeQuery[]&gt;] [[-Collation] &lt;String&gt;]</string>
+        <string>Get-MVObject [-ObjectType] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
+        <string>Get-MVObject [-ID] &lt;Guid&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
+        <string>Get-MVObject [[-ObjectType] &lt;String&gt;] [[-Queries] &lt;MVAttributeQuery[]&gt;] [[-Collation] &lt;String&gt;] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
+        <string>Get-MVObject [-ObjectType] &lt;String&gt; [-Attribute] &lt;String&gt; [-Value] &lt;Object&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
           <Name>ObjectType</Name>
           <Attributes>
             <string>System.Management.Automation.ValidateNotNullOrEmptyAttribute</string>
+            <string>System.Management.Automation.ParameterAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
             <string>System.Management.Automation.ParameterAttribute</string>
           </Attributes>
@@ -739,6 +977,31 @@ MVDeletionRules                   : {[calendar, Lithnet.Miiserver.Client.MVDelet
           <Description>The database collation to use in the search. By default, the value is 'SQL_Latin1_General_CP1_CI_AS'</Description>
           <DefaultValue>SQL_Latin1_General_CP1_CI_AS</DefaultValue>
         </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
       </Parameters>
       <Examples>
         <Example>
@@ -784,6 +1047,12 @@ Get-MVObject -Queries $queries</Cmd>
 See the help on the New-MVQuery cmdlet for more information on search parameters</Description>
           <Output />
         </Example>
+        <Example>
+          <Name>Get all metaverse objects of the type 'user'</Name>
+          <Cmd>Get-MVObject -ObjectType user</Cmd>
+          <Description />
+          <Output />
+        </Example>
       </Examples>
       <RelatedLinks />
       <SupportInformation ad="false" rsat="false" ps2="false" ps3="false" ps4="false" ps5="false" wxp="false" wv="false" w7="false" w8="false" w81="false" w2k3s="false" w2k3e="false" w2k3d="false" w2k8s="false" w2k8e="false" w2k8d="false" w2k8r2s="false" w2k8r2e="false" w2k8r2d="false" w2k12s="false" w2k12d="false" w2k12r2s="false" w2k12r2d="false" />
@@ -805,10 +1074,10 @@ See the help on the New-MVQuery cmdlet for more information on search parameters
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="ObjectType Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="ObjectType Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-MVSchema [[-ObjectType] &lt;String&gt;]</string>
+        <string>Get-MVSchema [[-ObjectType] &lt;String&gt;] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -818,6 +1087,31 @@ See the help on the New-MVQuery cmdlet for more information on search parameters
           </Attributes>
           <Aliases />
           <Description>Gets the schema for the specified metaverse object type only</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -860,10 +1154,10 @@ user                                                                       {[acc
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PendingExportAdds [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+        <string>Get-PendingExportAdds [-Delta] [-Hologram] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -902,6 +1196,31 @@ user                                                                       {[acc
           </Attributes>
           <Aliases />
           <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -926,10 +1245,10 @@ user                                                                       {[acc
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PendingExportDeletes [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+        <string>Get-PendingExportDeletes [-Delta] [-Hologram] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -968,6 +1287,31 @@ user                                                                       {[acc
           </Attributes>
           <Aliases />
           <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -992,10 +1336,10 @@ user                                                                       {[acc
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PendingExportRenames [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+        <string>Get-PendingExportRenames [-Delta] [-Hologram] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -1034,6 +1378,31 @@ user                                                                       {[acc
           </Attributes>
           <Aliases />
           <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -1058,10 +1427,10 @@ user                                                                       {[acc
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PendingExports [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+        <string>Get-PendingExports [-Delta] [-Hologram] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -1100,6 +1469,31 @@ user                                                                       {[acc
           </Attributes>
           <Aliases />
           <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -1124,10 +1518,10 @@ user                                                                       {[acc
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PendingExportUpdates [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+        <string>Get-PendingExportUpdates [-Delta] [-Hologram] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -1166,6 +1560,31 @@ user                                                                       {[acc
           </Attributes>
           <Aliases />
           <Description>The management agent to get the pending objects from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -1190,10 +1609,10 @@ user                                                                       {[acc
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PendingImportAdds [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+        <string>Get-PendingImportAdds [-Delta] [-Hologram] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -1232,6 +1651,31 @@ user                                                                       {[acc
           </Attributes>
           <Aliases />
           <Description>Specifies to get only the representation of the object with the changes applied</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -1256,10 +1700,10 @@ user                                                                       {[acc
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PendingImportDeletes [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+        <string>Get-PendingImportDeletes [-Delta] [-Hologram] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -1298,6 +1742,31 @@ user                                                                       {[acc
           </Attributes>
           <Aliases />
           <Description>Specifies to get only the representation of the object with the changes applied</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -1322,10 +1791,10 @@ user                                                                       {[acc
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PendingImportUpdates [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+        <string>Get-PendingImportUpdates [-Delta] [-Hologram] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -1366,6 +1835,31 @@ user                                                                       {[acc
           <Description>Specifies to get only the representation of the object with the changes applied</Description>
           <DefaultValue />
         </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
       </Parameters>
       <Examples />
       <RelatedLinks />
@@ -1388,12 +1882,12 @@ user                                                                       {[acc
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="FromRunNumber" Params="RunNumber MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="FromSummary" Params="Item MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="FromRunNumber" Params="RunNumber MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="FromSummary" Params="Item MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-RunDetail [-RunNumber] &lt;Int32&gt; [-MA] &lt;String&gt;</string>
-        <string>Get-RunDetail [-Item] &lt;RunSummary&gt; [-MA] &lt;String&gt;</string>
+        <string>Get-RunDetail [-RunNumber] &lt;Int32&gt; [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
+        <string>Get-RunDetail [-Item] &lt;RunSummary&gt; [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="ManagementAgent" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -1463,6 +1957,31 @@ user                                                                       {[acc
           <Description>The management agent to get the run detail from</Description>
           <DefaultValue />
         </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
       </Parameters>
       <Examples>
         <Example>
@@ -1501,10 +2020,10 @@ foreach($summaryItem in $summaryItems)
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-RunSummary [-MA] &lt;String&gt;</string>
+        <string>Get-RunSummary [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -1525,6 +2044,31 @@ foreach($summaryItem in $summaryItems)
           </Attributes>
           <Aliases />
           <Description>The management agent to get the run summary from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -1566,12 +2110,12 @@ foreach($summaryItem in $summaryItems)
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="Manual" Params="MVObjectType MVObjectID CSObject Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="Pipeline" Params="MVObject CSObject Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Manual" Params="MVObjectType MVObjectID CSObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="Pipeline" Params="MVObject CSObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Join-CSObject [-MVObjectType] &lt;String&gt; [-MVObjectID] &lt;Guid&gt; [-CSObject] &lt;CSObject&gt;</string>
-        <string>Join-CSObject [-MVObject] &lt;MVObject&gt; [-CSObject] &lt;CSObject&gt;</string>
+        <string>Join-CSObject [-MVObjectType] &lt;String&gt; [-MVObjectID] &lt;Guid&gt; [-CSObject] &lt;CSObject&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
+        <string>Join-CSObject [-MVObject] &lt;MVObject&gt; [-CSObject] &lt;CSObject&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -1615,6 +2159,31 @@ foreach($summaryItem in $summaryItems)
           <Description>The metaverse object to join</Description>
           <DefaultValue />
         </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
       </Parameters>
       <Examples>
         <Example>
@@ -1647,10 +2216,10 @@ Join-CSObject -CSObject $cs -MVObject $mv
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MVObjectType CSObject Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MVObjectType CSObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>New-MVObject [-MVObjectType] &lt;String&gt; [-CSObject] &lt;CSObject&gt;</string>
+        <string>New-MVObject [-MVObjectType] &lt;String&gt; [-CSObject] &lt;CSObject&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -1671,6 +2240,31 @@ Join-CSObject -CSObject $cs -MVObject $mv
           </Attributes>
           <Aliases />
           <Description>The connector space object to project</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -1710,10 +2304,10 @@ New-MVObject -CSObject $cs -MVObjectType 'user'</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Attribute Operator Value PipelineObject Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Attribute Operator Value PipelineObject Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>New-MVQuery [-Attribute] &lt;String&gt; [[-Operator] &lt;MVSearchFilterOperator&gt;] [[-Value] &lt;Object&gt;] [[-PipelineObject] &lt;MVAttributeQuery&gt;]</string>
+        <string>New-MVQuery [-Attribute] &lt;String&gt; [[-Operator] &lt;MVSearchFilterOperator&gt;] [[-Value] &lt;Object&gt;] [[-PipelineObject] &lt;MVAttributeQuery&gt;] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -1750,6 +2344,31 @@ New-MVObject -CSObject $cs -MVObjectType 'user'</Cmd>
           </Attributes>
           <Aliases />
           <Description>Not used</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -1795,10 +2414,10 @@ Get-MVObject -Queries $queries</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="CSObject Type Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="CSObject Type Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Set-DisconnectorState [-CSObject] &lt;CSObject&gt; [-Type] &lt;DisconnectorState&gt;</string>
+        <string>Set-DisconnectorState [-CSObject] &lt;CSObject&gt; [-Type] &lt;DisconnectorState&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="CSObject" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -1818,6 +2437,31 @@ Get-MVObject -Queries $queries</Cmd>
           </Attributes>
           <Aliases />
           <Description>The disconnector type to change to</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -1857,10 +2501,10 @@ Set-DisconnectorState -CSObject $cs -Type Normal</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Enabled Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Enabled Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Set-MVProvisioningRulesExtension [-Enabled] &lt;Boolean&gt;</string>
+        <string>Set-MVProvisioningRulesExtension [-Enabled] &lt;Boolean&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Boolean" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -1870,6 +2514,31 @@ Set-DisconnectorState -CSObject $cs -Type Normal</Cmd>
           </Attributes>
           <Aliases />
           <Description>Specifies if the provisioning rules extension should be enabled or disabled</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -1907,10 +2576,10 @@ Set-DisconnectorState -CSObject $cs -Type Normal</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="RunProfileName Async ResumeLastRun NoProgress MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="RunProfileName Async ResumeLastRun NoProgress MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Start-ManagementAgent [-RunProfileName] &lt;String&gt; [[-Async] &lt;SwitchParameter&gt;] [[-ResumeLastRun] &lt;SwitchParameter&gt;] [[-NoProgress] &lt;SwitchParameter&gt;] [-MA] &lt;String&gt;</string>
+        <string>Start-ManagementAgent [-RunProfileName] &lt;String&gt; [[-Async] &lt;SwitchParameter&gt;] [[-ResumeLastRun] &lt;SwitchParameter&gt;] [[-NoProgress] &lt;SwitchParameter&gt;] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
@@ -1969,6 +2638,31 @@ Set-DisconnectorState -CSObject $cs -Type Normal</Cmd>
           <Description>The management agent to execute</Description>
           <DefaultValue />
         </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
       </Parameters>
       <Examples>
         <Example>
@@ -2010,10 +2704,10 @@ Set-DisconnectorState -CSObject $cs -Type Normal</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Async MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Async MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Stop-ManagementAgent [[-Async] &lt;SwitchParameter&gt;] [-MA] &lt;String&gt;</string>
+        <string>Stop-ManagementAgent [[-Async] &lt;SwitchParameter&gt;] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="3" globbing="false">
@@ -2045,6 +2739,31 @@ Set-DisconnectorState -CSObject $cs -Type Normal</Cmd>
           <Description>The management agent to stop</Description>
           <DefaultValue />
         </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
       </Parameters>
       <Examples>
         <Example>
@@ -2074,10 +2793,10 @@ Set-DisconnectorState -CSObject $cs -Type Normal</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="CSObject Commit Delta Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="CSObject Commit Delta Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Sync-CSObject [-CSObject] &lt;CSObject&gt; [-Commit] [-Delta]</string>
+        <string>Sync-CSObject [-CSObject] &lt;CSObject&gt; [-Commit] [-Delta] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="CSObject" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -2106,6 +2825,31 @@ Set-DisconnectorState -CSObject $cs -Type Normal</Cmd>
           </Attributes>
           <Aliases />
           <Description>Specifies that a delta synchronization should be performed. A full synchronization is performed unless this switch is specified</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -2171,10 +2915,10 @@ Sync-CSObject $cs -Delta</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Wait-ManagementAgent [-MA] &lt;String&gt;</string>
+        <string>Wait-ManagementAgent [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -2195,6 +2939,31 @@ Sync-CSObject $cs -Delta</Cmd>
           </Attributes>
           <Aliases />
           <Description>The management agent to wait on</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -2227,10 +2996,10 @@ write-host "The management agent has now completed"</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Type MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Type MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-Connectors [[-Type] &lt;Nullable`1[ConnectorState]&gt;] [-MA] &lt;String&gt;</string>
+        <string>Get-Connectors [[-Type] &lt;Nullable`1[ConnectorState]&gt;] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Nullable`1[ConnectorState]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="2" globbing="false">
@@ -2260,6 +3029,31 @@ write-host "The management agent has now completed"</Cmd>
           </Attributes>
           <Aliases />
           <Description>The management agent to get the connectors from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -2303,10 +3097,10 @@ write-host "The management agent has now completed"</Cmd>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-MAStatistics [-MA] &lt;String&gt;</string>
+        <string>Get-MAStatistics [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -2327,6 +3121,31 @@ write-host "The management agent has now completed"</Cmd>
           </Attributes>
           <Aliases />
           <Description>The management agent to retrieve the statistics for</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -2375,10 +3194,10 @@ PendingExportTotal    : 3</Output>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-RunProfileNames [-MA] &lt;String&gt;</string>
+        <string>Get-RunProfileNames [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -2399,6 +3218,31 @@ PendingExportTotal    : 3</Output>
           </Attributes>
           <Aliases />
           <Description>The management agent to get the run profile names from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -2423,10 +3267,10 @@ PendingExportTotal    : 3</Output>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-RunProfiles [-MA] &lt;String&gt;</string>
+        <string>Get-RunProfiles [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Object" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -2447,6 +3291,31 @@ PendingExportTotal    : 3</Output>
           </Attributes>
           <Aliases />
           <Description>The management agent to get the run profiles from</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -2518,10 +3387,10 @@ RunSteps             : {Export}</Output>
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="File Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="File Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-SavedRunHistory [-File] &lt;String&gt;</string>
+        <string>Get-SavedRunHistory [-File] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="true" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -2540,6 +3409,31 @@ RunSteps             : {Export}</Output>
           </Attributes>
           <Aliases />
           <Description>The name of the file to load</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -2574,10 +3468,10 @@ foreach($item in $items)
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="ByDate" Params="BeforeDate File Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="ByDate" Params="BeforeDate File Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Save-RunHistory [[-BeforeDate] &lt;Nullable`1[DateTime]&gt;] -File &lt;String&gt;</string>
+        <string>Save-RunHistory [[-BeforeDate] &lt;Nullable`1[DateTime]&gt;] -File &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="Nullable`1[DateTime]" varLen="true" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -2596,6 +3490,31 @@ foreach($item in $items)
           </Attributes>
           <Aliases />
           <Description>The name of the file to save the runs to</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
@@ -2625,10 +3544,10 @@ foreach($item in $items)
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="__AllParameterSets" Params="Delta Hologram MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Get-PendingImports [-Delta] [-Hologram] [-MA] &lt;String&gt;</string>
+        <string>Get-PendingImports [-Delta] [-Hologram] [-MA] &lt;String&gt; [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="SwitchParameter" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
@@ -2659,6 +3578,31 @@ foreach($item in $items)
           <Description>The management agent to get the pending objects from</Description>
           <DefaultValue />
         </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
       </Parameters>
       <Examples />
       <RelatedLinks />
@@ -2680,12 +3624,14 @@ foreach($item in $items)
         <ReturnTypeDescription />
       </GeneralHelp>
       <ParamSets>
-        <CommandParameterSetInfo2 Name="MAName" Params="MAName Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
-        <CommandParameterSetInfo2 Name="MAObject" Params="MA Verbose Debug ErrorAction WarningAction ErrorVariable WarningVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="none" Params="Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="MAName" Params="MAName Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
+        <CommandParameterSetInfo2 Name="MAObject" Params="MA Verbose Debug ErrorAction WarningAction InformationAction ErrorVariable WarningVariable InformationVariable OutVariable OutBuffer PipelineVariable" />
       </ParamSets>
       <Syntax>
-        <string>Clear-FullSyncWarning [[-MAName] &lt;String&gt;]</string>
-        <string>Clear-FullSyncWarning [[-MA] &lt;ManagementAgent&gt;]</string>
+        <string>Clear-FullSyncWarning [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
+        <string>Clear-FullSyncWarning [[-MAName] &lt;String&gt;] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
+        <string>Clear-FullSyncWarning [[-MA] &lt;ManagementAgent&gt;] [-InformationAction &lt;ActionPreference&gt;] [-InformationVariable &lt;String&gt;]</string>
       </Syntax>
       <Parameters>
         <ParameterDescription type="String" varLen="false" required="true" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="true" pos="1" globbing="false">
@@ -2716,6 +3662,31 @@ foreach($item in $items)
           </Attributes>
           <Aliases />
           <Description>A management agent object, obtained from a call to Get-ManagementAgent</Description>
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="ActionPreference" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationAction</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+          </Attributes>
+          <Aliases>
+            <string>infa</string>
+          </Aliases>
+          <Description />
+          <DefaultValue />
+        </ParameterDescription>
+        <ParameterDescription type="String" varLen="false" required="false" dynamic="false" pipeRemaining="false" pipe="false" pipeProp="false" isPos="false" pos="named" globbing="false">
+          <Name>InformationVariable</Name>
+          <Attributes>
+            <string>System.Management.Automation.ParameterAttribute</string>
+            <string>System.Management.Automation.AliasAttribute</string>
+            <string>System.Management.Automation.Internal.CommonParameters+ValidateVariableName</string>
+          </Attributes>
+          <Aliases>
+            <string>iv</string>
+          </Aliases>
+          <Description />
           <DefaultValue />
         </ParameterDescription>
       </Parameters>
