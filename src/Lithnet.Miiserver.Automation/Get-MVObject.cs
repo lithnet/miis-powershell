@@ -58,10 +58,6 @@ namespace Lithnet.Miiserver.Automation
             {
                 this.GetByGuid();
             }
-            else if (this.ParameterSetName == "SearchByObjectType")
-            {
-                this.GetByObjectType();
-            }
             else if (this.ParameterSetName == "SearchByQuery")
             {
                 if (this.Queries != null)
