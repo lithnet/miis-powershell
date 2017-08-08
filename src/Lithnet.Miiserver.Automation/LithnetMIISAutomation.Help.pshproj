@@ -1,21 +1,10 @@
 <?xml version="1.0"?>
 <ModuleObject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fVersion="1.1" type="Manifest" mclass="Module" useSupports="false">
   <Name>LithnetMIISAutomation</Name>
-  <Version>1.0.6351.37891</Version>
+  <Version>1.0.6429.34787</Version>
   <Description>Lithnet PowerShell Module for FIM Synchronization Service</Description>
   <HasManifest>true</HasManifest>
-  <Provider>
-    <ProviderName>CodePlex</ProviderName>
-    <ProviderURL>https://www.codeplex.com/site/metaweblog</ProviderURL>
-    <Blog>
-      <blogid>lithnetmiisautomation</blogid>
-      <blogName>miisautomation</blogName>
-      <url>https://lithnetmiisautomation.codeplex.com/</url>
-    </Blog>
-    <UserName>ryannewington</UserName>
-    <Password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+nRfjshoE0WkN48Z5CdO/gAAAAACAAAAAAADZgAAwAAAABAAAAAtg87Y+pGSbuoikX/pqrzaAAAAAASAAACgAAAAEAAAAGsLErQgWnB2t8jIaUBvPVooAAAADTfb7M1PbKVs2OZLRn3lmdfX1OeA04Nw2A0Ww1AHOkF4LZrubzsAyhQAAADT8ZU8d8Smzu6Bv1zfU15toKEwfA==</Password>
-    <FetchPostCount>50</FetchPostCount>
-  </Provider>
+  <Provider/>
   <OverridePostCount>false</OverridePostCount>
   <FetchPostCount xsi:nil="true" />
   <Cmdlets>

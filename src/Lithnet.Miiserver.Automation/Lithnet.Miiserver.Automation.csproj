@@ -35,9 +35,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Lithnet.Miiserver.Client, Version=1.0.6347.20856, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lithnet.Miiserver.Client.1.0.6347.20856\lib\net45\Lithnet.Miiserver.Client.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Lithnet.Miiserver.Client, Version=1.0.6429.34741, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lithnet.Miiserver.Client.1.0.6429.34741\lib\net45\Lithnet.Miiserver.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -151,7 +150,8 @@
       $(PostBuildEventDependsOn);
       PostBuildMacros;
     </PostBuildEventDependsOn>
-    <PostBuildEvent>echo Assembly Version: @(VersionNumber)</PostBuildEvent>
+    <PostBuildEvent>"C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /sha1 5ce168989b1359309dddee460c10e96fa60fa78b /t http://time.certum.pl /v $(TargetFileName)
+echo Assembly Version: @(VersionNumber)</PostBuildEvent>
   </PropertyGroup>
   <Target Name="AfterBuild">
     <ReplaceFileText InputFilename="$(TargetDir)LithnetMiisAutomation.psd1" OutputFilename="$(TargetDir)LithnetMiisAutomation.psd1" MatchExpression="\$version\$" ReplacementText="@(VersionNumber)" />
