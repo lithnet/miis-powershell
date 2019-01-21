@@ -14,6 +14,8 @@
       <Component Id="cmpd4773acad00f467cb4af8945581416af" Guid="*" Win64="yes">
         <File Id="fil52320e2b2969470aa55363dd67a5132e" KeyPath="yes" Source="$(var.Lithnet.Miiserver.Automation.TargetDir)LithnetMiisAutomation.psd1" />
       </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="ENUSHELPFOLDER">
       <Component Id="cmp3413b4846e9347299068f6aac2f65a4d" Guid="*" Win64="yes">
         <File Id="fil1d55997b2c9b4248b2defbd3002eb0d0" KeyPath="yes" Source="$(var.Lithnet.Miiserver.Automation.TargetDir)en-us\Lithnet.Miiserver.Automation.dll-help.xml" />
       </Component>

@@ -52,15 +52,13 @@
 
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="System64Folder">
+      <Directory Id="ProgramFiles64Folder">
         <Directory Id="PSROOT" Name="WindowsPowerShell">
-          <Directory Id="PSV1ROOT" Name ="v1.0">
             <Directory Id ="PSMODULESROOT" Name="Modules">
               <Directory Id="APPLICATIONFOLDER" Name="LithnetMiisAutomation">
                 <Directory Id="ENUSHELPFOLDER" Name="en-us"/>
               </Directory>
             </Directory>
-          </Directory>
         </Directory>
       </Directory>
     </Directory>
