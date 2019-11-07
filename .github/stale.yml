@@ -15,13 +15,3 @@ markComment: >
   recent activity. It will be closed in 7 days if no further activity occurs.
 # Comment to post when closing a stale issue. Set to `false` to disable
 closeComment: false
-
-
-bug #d73a4a
-documentation #0075ca
-duplicate #cfd3d7
-enhancement #51dd44
-help #ffdb7a
-wontfix #ce1095
-stale #074063
-pinned #5c02db
