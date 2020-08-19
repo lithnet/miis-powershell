@@ -4,28 +4,15 @@
 
 The Lithnet FIM/MIM Synchronization Service PowerShell Module provides tools that allow interactions with the FIM/MIM Synchronization engine that goes beyond what is exposed via the supported WMI provider.
 
-Before proceeeding, read the following disclaimer
+## Getting started
+* Download the latest release from the [releases page](https://github.com/lithnet/miis-powershell/releases)
+* Read the [getting started guide](https://github.com/lithnet/miis-powershell/wiki)
 
-***
-> USE THIS TOOL AT YOUR OWN RISK
+## How can I contribute to the project?
+* Found an issue and want us to fix it? [Log it](https://github.com/lithnet/miis-powershell/issues)
+* Want to fix an issue yourself or add functionality? Clone the project and submit a pull request
+* Make a [donation](https://lithnet.io/donate) and help us cover our costs
 
-> This tool is provided for testing and diagnostic purposes and is intended for use in development and test environments. Any problems that arise from the use of the tool are not supported by the developers or by Microsoft.
-
-> The PowerShell module exposes functionality using a combination of 
- * Supported WMI interfaces
- * Wrapping existing PowerShell modules
- * Wrapping existing executables
- * Libraries that the synchronization client UI uses to interface with the sync engine itself. These libraries are undocumented APIs. 
-
-> The module does NOT interface with the sync engine database in any way.
-
-> It does not provide any mechanism to alter the internal configuration of the sync engine, unless an executable or documented API is available for that. 
-
-> The developers make no warranties as to the suitability of these tools for use in your environment, nor will we be liable for any financial or other damages arising from the use of these tools.
-***
-
-If you are ok with all that, then happy PowerShell-ing!
-
-[Read the getting started guide and list of cmdlets](https://github.com/lithnet/miis-powershell/wiki)
-
-[Download the latest release](https://github.com/lithnet/miis-powershell/releases)
+## Keep up to date
+* [Visit my blog](http://blog.lithiumblue.com)
+* [Follow me on twitter](https://twitter.com/RyanLNewington)![](http://twitter.com/favicon.ico)
