@@ -58,106 +58,104 @@ namespace Lithnet.Miiserver.Automation
             {
                 this.GetByGuid();
             }
-            else if (this.ParameterSetName == "SearchByQuery")
+            else if (this.ParameterSetName == "SearchByQuery" &&
+                     this.Queries != null)
             {
-                if (this.Queries != null)
+                foreach (MVAttributeQuery query in this.Queries)
                 {
-                    foreach(MVAttributeQuery query in this.Queries)
-                    {
-                        this.collectedQueries.Add(query);
-                    }
+                    this.collectedQueries.Add(query);
                 }
             }
         }
 
-        private void GetByPipeLineQuery()
-        {
-            MVQuery q = new MVQuery();
-            q.ObjectType = this.GetObjectType();
+    private void GetByPipeLineQuery()
+    {
+        MVQuery q = new MVQuery();
+        q.ObjectType = this.GetObjectType();
 
-            if (this.collectedQueries.Count > 0)
+        if (this.collectedQueries.Count > 0)
+        {
+            foreach (var item in this.collectedQueries)
             {
-                foreach (var item in this.collectedQueries)
-                {
-                    q.QueryItems.Add(item);
-                }
-            }
-
-            q.CollationOrder = this.Collation ?? q.CollationOrder;
-
-            this.WriteObject(SyncServer.GetMVObjects(q), true);
-        }
-
-        private void GetByGuid()
-        {
-            this.WriteObject(SyncServer.GetMVObject(this.ID));
-        }
-
-        private void GetByKey()
-        {
-            MVAttributeQuery a = new MVAttributeQuery();
-            a.Attribute = this.GetAttribute();
-            a.Operator = MVSearchFilterOperator.Equals;
-            a.Value = this.Value;
-
-            MVQuery q = new MVQuery();
-            q.ObjectType = this.GetObjectType();
-            q.QueryItems.Add(a);
-
-            this.WriteObject(SyncServer.GetMVObjects(q), true);
-        }
-
-        private void GetByObjectType()
-        {
-            MVQuery q = new MVQuery();
-            q.ObjectType = this.GetObjectType();
-
-            this.WriteObject(SyncServer.GetMVObjects(q), true);
-        }
-
-        private DsmlObjectClass GetObjectType()
-        {
-            if (this.ObjectType == null)
-            {
-                return null;
-            }
-
-            DsmlObjectClass objectClass;
-
-            if (MiisController.Schema.ObjectClasses.TryGetValue(this.ObjectType, out objectClass))
-            {
-                return objectClass;
-            }
-            else
-            {
-                throw new ItemNotFoundException(string.Format("Object type {0} does not exist in the schema", this.ObjectType));
+                q.QueryItems.Add(item);
             }
         }
 
-        private DsmlAttribute GetAttribute()
+        q.CollationOrder = this.Collation ?? q.CollationOrder;
+
+        this.WriteObject(SyncServer.GetMVObjects(q), true);
+    }
+
+    private void GetByGuid()
+    {
+        this.WriteObject(SyncServer.GetMVObject(this.ID));
+    }
+
+    private void GetByKey()
+    {
+        MVAttributeQuery a = new MVAttributeQuery();
+        a.Attribute = this.GetAttribute();
+        a.Operator = MVSearchFilterOperator.Equals;
+        a.Value = this.Value;
+
+        MVQuery q = new MVQuery();
+        q.ObjectType = this.GetObjectType();
+        q.QueryItems.Add(a);
+
+        this.WriteObject(SyncServer.GetMVObjects(q), true);
+    }
+
+    private void GetByObjectType()
+    {
+        MVQuery q = new MVQuery();
+        q.ObjectType = this.GetObjectType();
+
+        this.WriteObject(SyncServer.GetMVObjects(q), true);
+    }
+
+    private DsmlObjectClass GetObjectType()
+    {
+        if (this.ObjectType == null)
         {
-            DsmlObjectClass objectClass = this.GetObjectType();
-            IReadOnlyDictionary<string, DsmlAttribute> attributesToSearch;
+            return null;
+        }
 
-            if (objectClass != null)
-            {
-                attributesToSearch = objectClass.Attributes;
-            }
-            else
-            {
-                attributesToSearch = MiisController.Schema.Attributes;
-            }
+        DsmlObjectClass objectClass;
 
-            DsmlAttribute attribute;
-
-            if (attributesToSearch.TryGetValue(this.Attribute, out attribute))
-            {
-                return attribute;
-            }
-            else
-            {
-                throw new ItemNotFoundException(string.Format("Attribute {0} does not exist{1}{2}", this.Attribute, this.ObjectType == null ? string.Empty : " on object type ", this.ObjectType ?? string.Empty));
-            }
+        if (MiisController.Schema.ObjectClasses.TryGetValue(this.ObjectType, out objectClass))
+        {
+            return objectClass;
+        }
+        else
+        {
+            throw new ItemNotFoundException(string.Format("Object type {0} does not exist in the schema", this.ObjectType));
         }
     }
+
+    private DsmlAttribute GetAttribute()
+    {
+        DsmlObjectClass objectClass = this.GetObjectType();
+        IReadOnlyDictionary<string, DsmlAttribute> attributesToSearch;
+
+        if (objectClass != null)
+        {
+            attributesToSearch = objectClass.Attributes;
+        }
+        else
+        {
+            attributesToSearch = MiisController.Schema.Attributes;
+        }
+
+        DsmlAttribute attribute;
+
+        if (attributesToSearch.TryGetValue(this.Attribute, out attribute))
+        {
+            return attribute;
+        }
+        else
+        {
+            throw new ItemNotFoundException(string.Format("Attribute {0} does not exist{1}{2}", this.Attribute, this.ObjectType == null ? string.Empty : " on object type ", this.ObjectType ?? string.Empty));
+        }
+    }
+}
 }

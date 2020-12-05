@@ -10,7 +10,7 @@ namespace Lithnet.Miiserver.Automation
     [Cmdlet(VerbsCommon.Clear, "RunHistory", DefaultParameterSetName = "ByDate")]
     public class ClearRunHistory : Cmdlet
     {
-        [Parameter(Mandatory = false, ParameterSetName ="ByDate", Position = 1)]
+        [Parameter(Mandatory = false, ParameterSetName = "ByDate", Position = 1)]
         public DateTime? BeforeDate { get; set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ByDays", Position = 1)]

@@ -11,11 +11,11 @@ namespace Lithnet.Miiserver.Automation
     [Cmdlet(VerbsCommunications.Disconnect, "CSObject")]
     public class DisconnectCSObject : PSCmdlet
     {
-        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline =true), ValidateNotNullOrEmpty]
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true), ValidateNotNullOrEmpty]
         public CSObject CSObject { get; set; }
 
         [Parameter(Mandatory = false, Position = 2)]
-        public SwitchParameter Explicit {get;set;}
+        public SwitchParameter Explicit { get; set; }
 
         [Parameter(Mandatory = false, Position = 3)]
         public SwitchParameter Force { get; set; }

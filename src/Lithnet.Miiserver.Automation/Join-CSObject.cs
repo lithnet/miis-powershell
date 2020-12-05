@@ -11,7 +11,7 @@ namespace Lithnet.Miiserver.Automation
     [Cmdlet(VerbsCommon.Join, "CSObject")]
     public class JoinCSObject : Cmdlet
     {
-        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = false, ParameterSetName ="Manual"), ValidateNotNullOrEmpty]
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = false, ParameterSetName = "Manual"), ValidateNotNullOrEmpty]
         public string MVObjectType { get; set; }
 
         [Parameter(Mandatory = true, Position = 2, ValueFromPipeline = false, ParameterSetName = "Manual"), ValidateNotNullOrEmpty]

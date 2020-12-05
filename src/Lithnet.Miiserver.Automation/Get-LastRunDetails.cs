@@ -15,7 +15,6 @@ namespace Lithnet.Miiserver.Automation
 
         protected override void ProcessRecord()
         {
-           
             if (this.Count > 0)
             {
                 this.WriteObject(this.MAInstance.GetRunHistory(this.Count), true);

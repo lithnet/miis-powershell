@@ -28,7 +28,7 @@ namespace Lithnet.Miiserver.Automation
         {
             if (reload || !maCache.ContainsKey(name))
             {
-                ManagementAgent ma =  ManagementAgent.GetManagementAgent(name);
+                ManagementAgent ma = ManagementAgent.GetManagementAgent(name);
 
                 if (!maCache.ContainsKey(name))
                 {

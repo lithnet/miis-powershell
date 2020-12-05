@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Management.Automation;
 using Lithnet.Miiserver.Client;
+using System.Threading;
 
 namespace Lithnet.Miiserver.Automation
 {
@@ -17,7 +18,7 @@ namespace Lithnet.Miiserver.Automation
             while (!this.MAInstance.IsIdle())
             {
                 this.UpdateProgress(true, last.RunNumber);
-                System.Threading.Thread.Sleep(5000);
+                Thread.Sleep(5000);
             }
 
             ProgressRecord r = new ProgressRecord(0, this.MAInstance.Name, string.Format("Finished: {0}", last.RunProfileName));

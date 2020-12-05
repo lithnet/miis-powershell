@@ -11,7 +11,7 @@ namespace Lithnet.Miiserver.Automation
     [Cmdlet(VerbsCommon.Set, "DisconnectorState")]
     public class SetDisconnectorState : Cmdlet
     {
-        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline=true), ValidateNotNullOrEmpty]
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true), ValidateNotNullOrEmpty]
         public CSObject CSObject { get; set; }
 
         [Parameter(Mandatory = true, Position = 2)]

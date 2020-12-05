@@ -21,12 +21,9 @@ namespace Lithnet.Miiserver.Automation
             {
                 this.WriteObject(schema);
             }
-            else
+            else if (schema.ObjectClasses.ContainsKey(this.ObjectType))
             {
-                if (schema.ObjectClasses.ContainsKey(this.ObjectType))
-                {
-                    this.WriteObject(schema.ObjectClasses[this.ObjectType]);
-                }
+                this.WriteObject(schema.ObjectClasses[this.ObjectType]);
             }
         }
     }

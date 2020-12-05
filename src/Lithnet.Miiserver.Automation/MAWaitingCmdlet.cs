@@ -148,7 +148,7 @@ namespace Lithnet.Miiserver.Automation
                 default:
                     return false;
             }
-
+            
             return true;
         }
 
@@ -161,7 +161,7 @@ namespace Lithnet.Miiserver.Automation
             {
                 return;
             }
-            
+
             ProgressItem current = new ProgressItem(DateTime.Now, currentcount);
             this.countHistory.Enqueue(current);
 
