@@ -27,7 +27,6 @@ namespace Lithnet.Miiserver.Automation
             if (this.ID != Guid.Empty)
             {
                 this.WriteObject(this.MAInstance.GetCSObject(this.ID));
-                return;
             }
             else if (!string.IsNullOrWhiteSpace(this.DN))
             {
@@ -39,12 +38,10 @@ namespace Lithnet.Miiserver.Automation
                 {
                     this.WriteObject(this.MAInstance.GetCSObject(this.DN));
                 }
-                return;
             }
             else if (!string.IsNullOrWhiteSpace(this.Rdn))
             {
                 this.WriteObject(this.MAInstance.GetCSObjects(this.Rdn), true);
-                return;
             }
         }
     }

@@ -44,33 +44,29 @@ namespace Lithnet.Miiserver.Automation
                 return;
             }
 
-            string description;
-
-            if (pending)
-            {
-                description = $"Waiting for {this.MAInstance.Name} to finish {s.RunProfileName}";
-            }
-            else
-            {
-                description = this.MAInstance.Name;
-            }
-
             if (this.lastStepNumber == 0 || this.lastStepNumber != d.StepNumber)
             {
                 this.lastStepNumber = d.StepNumber;
                 this.countHistory = new FixedSizedQueue<ProgressItem>(30);
             }
 
+            string description = GenerateDescription(pending, s);
+            ProgressRecord r = ProcessGetCounts(d, description);
+
+            this.WriteProgress(r);
+        }
+
+        private ProgressRecord ProcessGetCounts(StepDetails d, string description)
+        {
             ProgressRecord r = new ProgressRecord(0, description, string.Format(
                 $"Performing {this.runProfile.Name} step {d.StepNumber}/{this.runProfile.RunSteps.Count}: {d.StepDefinition.StepTypeDescription}"))
             {
                 RecordType = ProgressRecordType.Processing
             };
 
-            int processed;
-            double total;
             int remaining = 0;
-            if (this.GetCounts(d, out processed, out total))
+
+            if (this.GetCounts(d, out int processed, out double total))
             {
                 int percentComplete = (int)((processed / total) * 100);
                 r.PercentComplete = percentComplete > 100 ? 0 : percentComplete;
@@ -81,10 +77,7 @@ namespace Lithnet.Miiserver.Automation
             {
                 double objpersec = 0;
 
-                int changedCount;
-                TimeSpan? timespan;
-
-                this.GetCountDiff(processed, out changedCount, out timespan);
+                this.GetCountDiff(processed, out int changedCount, out TimeSpan? timespan);
 
                 if (changedCount > 0 && timespan.HasValue)
                 {
@@ -107,7 +100,23 @@ namespace Lithnet.Miiserver.Automation
                 r.StatusDescription += " (waiting for MA to start)";
             }
 
-            this.WriteProgress(r);
+            return r;
+        }
+
+        private string GenerateDescription(bool pending, RunDetails s)
+        {
+            string description;
+
+            if (pending)
+            {
+                description = $"Waiting for {this.MAInstance.Name} to finish {s.RunProfileName}";
+            }
+            else
+            {
+                description = this.MAInstance.Name;
+            }
+
+            return description;
         }
 
         private bool GetCounts(StepDetails d, out int processed, out double total)

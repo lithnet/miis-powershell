@@ -45,52 +45,57 @@ namespace Lithnet.Miiserver.Automation
             }
             else
             {
-                Task<string> t = this.MAInstance.ExecuteRunProfileAsync(this.RunProfileName, this.ResumeLastRun);
-                int currentExecutionNumber = -1;
+                ExecuteRunProfileSync(lastExecutionNumber);
+            }
+        }
 
-                do
+        private void ExecuteRunProfileSync(int lastExecutionNumber)
+        {
+            Task<string> t = this.MAInstance.ExecuteRunProfileAsync(this.RunProfileName, this.ResumeLastRun);
+            int currentExecutionNumber = -1;
+
+            do
+            {
+                if (t.IsCompleted)
                 {
-                    if (t.IsCompleted)
-                    {
-                        break;
-                    }
-
-                    RunDetails d = this.MAInstance.GetLastRun();
-                    if (d != null)
-                    {
-                        currentExecutionNumber = d.RunNumber;
-                    }
-
-                    Thread.Sleep(500);
-                }
-                while (currentExecutionNumber == -1 || currentExecutionNumber == lastExecutionNumber);
-
-                while (!t.IsCompleted)
-                {
-                    if (!this.NoProgress.IsPresent)
-                    {
-                        this.UpdateProgress(false, currentExecutionNumber);
-                    }
-
-                    Thread.Sleep(2000);
+                    break;
                 }
 
-                ProgressRecord r = new ProgressRecord(0, this.MAInstance.Name, $"Finished: {this.RunProfileName}")
+                RunDetails d = this.MAInstance.GetLastRun();
+                if (d != null)
                 {
-                    RecordType = ProgressRecordType.Completed,
-                    PercentComplete = 100
-                };
-                this.WriteProgress(r);
-
-                if (t.IsFaulted)
-                {
-                    throw t.Exception?.InnerExceptions.First() ?? new MAExecutionException();
+                    currentExecutionNumber = d.RunNumber;
                 }
 
-                if (t.Result != "success")
+                Thread.Sleep(500);
+            }
+            while (currentExecutionNumber == -1 || currentExecutionNumber == lastExecutionNumber);
+
+            while (!t.IsCompleted)
+            {
+                if (!this.NoProgress.IsPresent)
                 {
-                    this.WriteWarning($"Management agent returned {t.Result}");
+                    this.UpdateProgress(false, currentExecutionNumber);
                 }
+
+                Thread.Sleep(2000);
+            }
+
+            ProgressRecord r = new ProgressRecord(0, this.MAInstance.Name, $"Finished: {this.RunProfileName}")
+            {
+                RecordType = ProgressRecordType.Completed,
+                PercentComplete = 100
+            };
+            this.WriteProgress(r);
+
+            if (t.IsFaulted)
+            {
+                throw t.Exception?.InnerExceptions.First() ?? new MAExecutionException();
+            }
+
+            if (t.Result != "success")
+            {
+                this.WriteWarning($"Management agent returned {t.Result}");
             }
         }
     }

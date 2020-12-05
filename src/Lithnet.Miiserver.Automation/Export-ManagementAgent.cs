@@ -16,12 +16,10 @@ namespace Lithnet.Miiserver.Automation
 
         protected override void ProcessRecord()
         {
-            if (System.IO.File.Exists(this.File))
+            if (System.IO.File.Exists(this.File) && 
+                !this.ShouldContinue("The specified file already exists. Overwrite?", "File already exists"))
             {
-                if (!this.ShouldContinue("The specified file already exists. Overwrite?", "File already exists"))
-                {
-                    return;
-                }
+                return;
             }
 
             this.MAInstance.ExportManagementAgent(this.File);

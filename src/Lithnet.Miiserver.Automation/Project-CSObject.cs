@@ -25,7 +25,7 @@ namespace Lithnet.Miiserver.Automation
             }
             else
             {
-                throw new ArgumentOutOfRangeException("MVObjectType", "No such object type");
+                throw new ArgumentOutOfRangeException(nameof(this.MVObjectType), "No such object type");
             }
         }
     }
