@@ -17,4 +17,4 @@ Lithnet offer enterprise support plans for our open-source products. Deploy our 
 
 ## Keep up to date
 * [Visit my blog](http://blog.lithiumblue.com)
-* [Follow me on twitter](https://twitter.com/RyanLNewington)![](http://twitter.com/favicon.ico)
+* [Follow us on twitter](https://twitter.com/lithnet_io)![](http://twitter.com/favicon.ico)
