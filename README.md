@@ -11,7 +11,9 @@ The Lithnet FIM/MIM Synchronization Service PowerShell Module provides tools tha
 ## How can I contribute to the project?
 * Found an issue and want us to fix it? [Log it](https://github.com/lithnet/miis-powershell/issues)
 * Want to fix an issue yourself or add functionality? Clone the project and submit a pull request
-* Make a [donation](https://lithnet.io/donate) and help us cover our costs
+
+## Enteprise support
+Lithnet offer enterprise support plans for our open-source products. Deploy our tools with confidence that you have the backing of the dedicated Lithnet support team if you run into any issues, have questions, or need advice. Reach out to support@lithnet.io, let us know the number of users you are managing with your MIM implementation, and we'll put together a quote.
 
 ## Keep up to date
 * [Visit my blog](http://blog.lithiumblue.com)
